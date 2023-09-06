@@ -21,4 +21,3 @@ export default function ProductPage({params} : Props) {
   );
 }
 
-

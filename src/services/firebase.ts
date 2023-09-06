@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, remove } from "firebase/database";
 import { v4 } from "uuid";
-import { Product, Products } from "@/types/products";
+import { getStorage } from "firebase/storage";
+
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -17,7 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+const storage = getStorage(app);
 const db = getDatabase(app);
 
 //제품 추가
@@ -32,9 +33,9 @@ export const addProduct = async (product: Product) => {
 };
 
 // 전체 제품 조회 (firebase) serverComponent에서 사용
+
 export const getProduct = async () => {
   const snapshot = await get(ref(db, "products"));
-  console.log(Object.values(snapshot.val()));
   return Object.values(snapshot.val()) as Products;
 };
 
@@ -51,3 +52,24 @@ export const updateProduct = async (product: Product) => {
     console.log("response", res);
   });
 };
+
+export async function getCart(userId:string):Promise<CartProduct[]> {
+  return await get(ref(db, `carts/${userId}`)).then((snapshot) => {
+    const items = snapshot.val() || {}
+    console.log(items)
+    return Object.values(items);
+  });
+}
+
+export async function addOrUpdateToCart(userId:string, product:CartProduct) {
+  return await set(ref(db, `carts/${userId}/${product.id}`), product);
+}
+
+//제품 등록 삭제
+export async function removeFromCart(userId:string, productId:string) {
+  return await remove(ref(db, `carts/${userId}/${productId}`));
+}
+
+export async function addTransaction(date:string, product:Product) {
+  return await set(ref(db, `transactions/${date}/${product.id}`), product);
+}
