@@ -1,5 +1,5 @@
 "use client";
-import { addProduct } from "@/api/firebase";
+import { addProduct } from "@/services/firebase/product";
 
 export default function addProductBtn() {
   const submitHandler = (e: any) => {

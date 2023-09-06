@@ -1,24 +1,10 @@
-import { initializeApp } from "firebase/app";
+import firebase_app from "./config";
 import { getDatabase, ref, set, get, remove } from "firebase/database";
 import { v4 } from "uuid";
 import { Product, Products } from "@/types/products";
 
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-  databaseURL:
-    "https://columbiatools-2428d-default-rtdb.asia-southeast1.firebasedatabase.app",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const db = getDatabase(app);
+// FIREBASE DB에서 product에 해당하는 데이터의 CRUD.
+const db = getDatabase(firebase_app);
 
 //제품 추가
 export const addProduct = async (product: Product) => {
