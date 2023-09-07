@@ -16,6 +16,7 @@ export default function MyPageLayout({
           <SideBar />
         </div>
         <div className="w-full">
+          {/* @ts-expect-error Async Server Component */}
           <OrderProgress />
           <div>{children}</div>
         </div>
