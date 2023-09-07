@@ -20,7 +20,7 @@ export default function RootLayout({
     <html>
       <body>
         <Header />
-        <section className="min-h-content flex flex-col justify-center items-center">
+        <section>
           {children}
         </section>
         <Footer />
