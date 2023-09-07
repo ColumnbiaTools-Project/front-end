@@ -20,7 +20,6 @@ export const addProduct = async (product: Product) => {
 // 전체 제품 조회 (firebase) serverComponent에서 사용
 export const getProduct = async () => {
   const snapshot = await get(ref(db, "products"));
-  console.log(Object.values(snapshot.val()));
   return Object.values(snapshot.val()) as Products;
 };
 

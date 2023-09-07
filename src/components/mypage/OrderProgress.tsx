@@ -1,7 +1,33 @@
 import { BsChevronRight } from "react-icons/bs";
 import Link from "next/link";
+import { getOrders } from "@/services/firebase/orders";
+import { Order } from "@/types/orders";
 
-export default function OrderProgress() {
+const orderProgress = [
+  "주문접수", //2
+  "결제완료", // 1
+  "상품준비중", // 1
+  "배송중", // 1
+  "배송완료", // 1
+];
+
+export default async function OrderProgress() {
+  const orders = (await getOrders("1234test")) as Order[];
+
+  if (!orders) return console.log("주문이 없습니다.");
+
+  const statusCount: Record<string, number> = {};
+  for (const status of orderProgress) {
+    // 일치하는 상태를 가진 order를 세기 위해 filter 함수 설정
+    if (!statusCount[status]) statusCount[status] = 0;
+
+    const count: number = orders.filter(
+      (order: Order) => order.status === status,
+    ).length;
+
+    statusCount[status] = count;
+  }
+
   return (
     <div>
       <div>
@@ -14,7 +40,17 @@ export default function OrderProgress() {
             <p>더보기</p> <BsChevronRight className="ml-1" />
           </Link>
         </div>
-        <div className="w-full h-[120px] bg-[#f1f1f5]"></div>
+        <div className="w-full h-[120px] bg-[#f1f1f5] flex justify-around items-center">
+          {orderProgress.map(status => (
+            <div
+              key={status}
+              className="flex flex-col justify-center items-center"
+            >
+              <p className="text-[#888888] text-sm">{status}</p>
+              <p className="text-[#888888] text-sm">{statusCount[status]}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
