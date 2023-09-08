@@ -3,9 +3,11 @@ import type { Metadata } from "next";
 import { Inter, Noto_Sans, Open_Sans } from "next/font/google";
 import Header from "@/app/Header";
 import Footer from "@/app/Footer";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
+import Providers from "@/app/Provider";
 
-const sans = Open_Sans({ subsets: ["latin"] });
+// const sans = Noto_Sans({ subsets: ["latin"], weight: ["700","500","300"] });
+const sans = Open_Sans({ subsets: ["latin"]})
 
 export const metadata: Metadata = {
   title: "Columbia Tools",
@@ -15,13 +17,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: {
   children: React.ReactNode;
 }) {
-  const queryClient = new QueryClient();
   return (
     <html lang={"ko"} className={sans.className}>
     <body>
     <Header />
     <section className="min-h-content">
-      {children}
+      <Providers>{children}</Providers>
     </section>
     <Footer />
     </body>

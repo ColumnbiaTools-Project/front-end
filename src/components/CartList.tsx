@@ -1,74 +1,65 @@
-"use client";
-import Image from "next/image";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { useCart } from "@/Hooks/useCart";
+import CartItem from "@/components/CartItem";
+import CartTotalPayment from "@/components/CartTotalPayment";
+import getQueryClient from "@/app/getQueryClient";
+import { uid } from "@/constants/constant";
 
-type Props = {
-  cartData: CartProduct[]
-}
+export default function CartList() {
+  const queryClient = getQueryClient();
+  const { cartQuery: { data: cart } } = useCart();
+  const [allChecked, setAllChecked] = useState<CartProduct | undefined>();
+  const { addOrUpdateItem, removeItem } = useCart();
 
-/*2.cartList 에서 주문 리스트를 뿌려준다 - cartList
-3.체크 박스 체크 표시가 된 물건을 계산한다. - cartList
-4.전체 체크시 전체 물건이 결재 진행된다. - cartList
-5.계산된 물건은 판매리스트 db에 날짜 기준으로 업데이트 - cartList / serverPage*/
-
-
-export default function CartList({ cartData }: Props) {
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [checked, setChecked] = useState(false);
-
-  // useEffect(() => {})
-  // 처음 로딩시에는 서버에서 값을 가져온다.
-  // 체크 박스 체크시 값을 다시 가져 온다.
-  // 그리고 값을 누적하여 보여준다.
-
+  const hasProducts = cart && cart.length > 0;
+  let filter = cart && cart.filter(item => item.checked);
+  let totalPrice = filter && filter.reduce((prev, current) =>
+    prev + current.price * current.quantity, 0);
 
   function handleCheck(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value,checked} = event.target;
+    const { name, checked } = event.target;
     console.log(name, checked);
-    if (name === "all" && checked) {
-      setTotalPrice(cartData.reduce((acc, cur) => acc + cur.price, 0));
+    if (name === "all") {
+      const filter: CartProduct[] | undefined = cart && cart.map((item) => ({ ...item, checked: checked }));
+      filter && filter.forEach((item) => {
+        addOrUpdateItem.mutate(item)
+      })
+      console.log(filter);
+      // totalPrice = filter && filter.reduce((prev:number, current) => prev + current.price * current.quantity, 0);
     }
-    if (!checked){
-      setTotalPrice(0)
+    const selectedItem = cart?.find((item) => item.id === name);
+    if (selectedItem) {
+      selectedItem.checked = checked;
+      addOrUpdateItem.mutate(selectedItem);
     }
   }
 
+  function handleDelete(id: string) {
+    console.log("지우개");
+    removeItem.mutate(id);
+  }
 
   return (
     <>
-      <div className={"flex"}>
-        <input
-          onChange={handleCheck}
-          name="all"
-          className="w-[24px] mr-3"
-          type="checkbox"
-        />
-        <p className={"text-[24px] text-DEFAULT"}>전체 선택</p>
-      </div>
-      <div>
-        {cartData && cartData.map((item, index) => (
-          <ul className={"flex justify-center items-center "} key={index}>
-            <input
-              name={'check'}
-              onChange={handleCheck}
-              type="checkbox" />
-            <Image
-              src={item.image}
-              width={150} height={100}
-              alt={item.title}
-              className={"ml-5"}
-            />
-            <li>{item.title}</li>
-            <li>{item.price}</li>
-            <li>{item.color}</li>
-            <li>{item.id}</li>
-          </ul>
-        ))}
-        <div>
-          <p>합계 금액 :</p>
-          <p>{totalPrice.toLocaleString()} 원</p>
-        </div>
-      </div>
+      {!hasProducts && <p>장바구니에 상품이 없습니다.</p>}
+      {
+        hasProducts && (
+          <>
+            <div className={"flex"}>
+              <input
+                onChange={handleCheck}
+                name="all"
+                className="w-[24px] mr-3"
+                type="checkbox"
+              />
+              <p className={"text-[24px] text-DEFAULT"}>전체 선택</p>
+            </div>
+            <p>{totalPrice}</p>
+            <CartItem cartList={cart} handleCheck={handleCheck} />
+            <CartTotalPayment totalPrice={totalPrice} />
+          </>
+        )
+      }
     </>
   );
 }

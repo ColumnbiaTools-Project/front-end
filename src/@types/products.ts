@@ -20,4 +20,6 @@ declare interface CartProduct {
   color: string;
   id: string;
   image:string;
+  checked: boolean;
+  quantity:number;
 }
