@@ -4,11 +4,11 @@ import { getOrders } from "@/services/firebase/orders";
 import { Order } from "@/@types/orders";
 
 const orderProgress = [
-  "주문접수", //2
-  "결제완료", // 1
-  "상품준비중", // 1
-  "배송중", // 1
-  "배송완료", // 1
+  "주문접수",
+  "결제완료",
+  "상품준비중",
+  "배송중",
+  "배송완료",
 ];
 
 export default async function OrderProgress() {
