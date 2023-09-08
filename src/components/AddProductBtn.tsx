@@ -1,7 +1,9 @@
 "use client";
-import { addProduct } from "@/services/firebase";
 
-export default function addProductBtn() {
+import { addProduct } from "@/services/firebase/product";
+
+export default function AddProductBtn() {
+
   const submitHandler = (e: any) => {
     e.preventDefault();
     const title: string = e.target.title.value;
