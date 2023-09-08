@@ -44,10 +44,13 @@ export default async function OrderProgress() {
           {orderProgress.map(status => (
             <div
               key={status}
-              className="flex flex-col justify-center items-center"
+              className="flex flex-col justify-center items-center relative font-medium text-lg"
             >
-              <p className="text-[#888888] text-sm">{status}</p>
-              <p className="text-[#888888] text-sm">{statusCount[status]}</p>
+              <p className="mb-2.5">{status}</p>
+              <p>{statusCount[status]}</p>
+              {status !== "배송완료" && (
+                <BsChevronRight className="absolute -right-[68px] text-[#888888]" />
+              )}
             </div>
           ))}
         </div>

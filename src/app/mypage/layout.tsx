@@ -15,7 +15,7 @@ export default function MyPageLayout({
         <div className="mr-44">
           <SideBar />
         </div>
-        <div className="w-full">
+        <div className="w-full flex flex-col gap-y-40">
           {/* @ts-expect-error Async Server Component */}
           <OrderProgress />
           <div>{children}</div>
