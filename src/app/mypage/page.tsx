@@ -11,7 +11,7 @@ export default function MyPage() {
           className="flex justify-between items-center mt-10 pb-2 border-[#d9d9d9] border-b-2 font-medium hover:underline"
         >
           <p>예약 확인 / 변경 / 취소</p>
-          <BsChevronRight className="text-[#d9d9d9]" stroke-width="2px" />
+          <BsChevronRight className="text-[#d9d9d9]" strokeWidth="2px" />
         </Link>
       </div>
       <div className="w-[443px] h-28">
@@ -21,7 +21,7 @@ export default function MyPage() {
           className="flex justify-between items-center mt-10 pb-2 border-[#d9d9d9] border-b-2 font-medium hover:underline"
         >
           <p>회원정보 수정 / 회원 탈퇴</p>
-          <BsChevronRight className="text-[#d9d9d9]" stroke-width="2px" />
+          <BsChevronRight className="text-[#d9d9d9]" strokeWidth="2px" />
         </Link>
       </div>
     </div>
