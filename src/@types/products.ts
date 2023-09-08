@@ -19,4 +19,5 @@ declare interface CartProduct {
   price: number;
   color: string;
   id: string;
+  image:string;
 }

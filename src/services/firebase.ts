@@ -56,7 +56,6 @@ export const updateProduct = async (product: Product) => {
 export async function getCart(userId:string):Promise<CartProduct[]> {
   return await get(ref(db, `carts/${userId}`)).then((snapshot) => {
     const items = snapshot.val() || {}
-    console.log(items)
     return Object.values(items);
   });
 }
