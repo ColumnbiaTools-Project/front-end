@@ -5,6 +5,7 @@ import CheckOut from "@/components/payment/CheckOut";
 import { useState } from "react";
 
 export default function Page() {
+
   const [totalPrice,setTotalPrice] = useState<number>(0);
   return (
     <>
