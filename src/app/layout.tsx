@@ -2,10 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 import { Inter, Noto_Sans, Open_Sans } from "next/font/google";
-import Header from "@/app/Header";
-import Footer from "@/app/Footer";
-import { QueryClient } from "@tanstack/react-query";
 import Providers from "@/app/Provider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 
 
