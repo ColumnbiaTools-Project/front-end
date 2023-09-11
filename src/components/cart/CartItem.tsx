@@ -12,7 +12,7 @@ export default function CartItem({cartList , handleCheck, handleDelete} : Props)
     <>
       <div>
         {cartList?.map((item: CartProduct, index: number) => (
-          <ul className={"flex justify-center items-center "} key={index}>
+          <ul className={"flex justify-center items-center gap-2 "} key={index}>
             <input
               name={item.id}
               onChange={handleCheck}
@@ -27,7 +27,7 @@ export default function CartItem({cartList , handleCheck, handleDelete} : Props)
               className={"ml-5"}
             />
             <li>{item.title}</li>
-            <li>{item.price}</li>
+            <li>{item.price.toLocaleString()}</li>
             <li>{item.color}</li>
             <li>{item.id}</li>
             <li>{item.quantity}</li>
