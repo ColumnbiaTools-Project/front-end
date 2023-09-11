@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addOrUpdateToCart, getCart, removeFromCart } from "@/services/firebase";
+import { addOrUpdateToCart, getCart, removeFromCart } from "@/services/firebase/product";
 import { uid } from "@/constants/constant";
 import getQueryClient from "@/app/getQueryClient";
 

@@ -1,12 +1,13 @@
 import Image from "next/image";
-import { ChangeEvent } from "react";
+import { ChangeEvent, } from "react";
 
 type Props = {
   cartList?: CartProduct[],
   handleCheck?: (e:ChangeEvent<HTMLInputElement>) => void,
+  handleDelete?: (id:string) => void
 }
 
-export default function CartItem({cartList , handleCheck} : Props) {
+export default function CartItem({cartList , handleCheck, handleDelete} : Props) {
   return (
     <>
       <div>
@@ -29,6 +30,10 @@ export default function CartItem({cartList , handleCheck} : Props) {
             <li>{item.price}</li>
             <li>{item.color}</li>
             <li>{item.id}</li>
+            <li>{item.quantity}</li>
+            <li>
+              <button onClick={() =>handleDelete && handleDelete(item.id)}>Delete</button>
+            </li>
           </ul>
         ))}
       </div>

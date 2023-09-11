@@ -1,5 +1,5 @@
 import getQueryClient from "@/app/getQueryClient";
-import { getCart } from "@/services/firebase";
+import { getCart } from "@/services/firebase/product";
 import { dehydrate } from "@tanstack/query-core";
 import { Hydrate } from "@tanstack/react-query";
 import CartList from "@/components/CartList";
