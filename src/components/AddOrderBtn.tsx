@@ -1,9 +1,7 @@
 "use client";
 import { addOrder } from "@/services/firebase/orders";
 import { getProduct } from "@/services/firebase/product";
-import { stringify } from "querystring";
 import { v4 } from "uuid";
-import { Product } from "@/types/products";
 
 //!!!!!!테스트용 코드입니다. 나중에 지워주세요!!!!!!
 

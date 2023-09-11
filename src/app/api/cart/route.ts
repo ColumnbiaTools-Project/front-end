@@ -1,4 +1,4 @@
-import { addOrUpdateToCart, getCart } from "@/services/firebase";
+import { addOrUpdateToCart, getCart } from "@/services/firebase/product";
 import { NextResponse } from "next/server";
 
 export async function GET() {

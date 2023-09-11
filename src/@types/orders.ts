@@ -1,5 +1,5 @@
 
-export interface Order extends Product {
+declare interface Order extends Product {
   quantity: number;
   orderId: string;
   createdAt: string;
