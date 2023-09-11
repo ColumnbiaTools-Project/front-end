@@ -7,16 +7,19 @@ import {
 } from "@tosspayments/payment-widget-sdk";
 import { nanoid } from "nanoid";
 import { useAsync } from "react-use";
+import Guide from "@/components/Guide";
 
 const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
-
-export default function CheckOut() {
+type Props ={
+  totalPrice: number
+}
+export default function CheckOut( {totalPrice} : Props) {
   const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
   const paymentMethodsWidgetRef = useRef<ReturnType<
     PaymentWidgetInstance["renderPaymentMethods"]
   > | null>(null);
-  const [price, setPrice] = useState(50_000);
+  const [price, setPrice] = useState(totalPrice);
 
   useAsync(async () => {
     // ------  결제위젯 초기화 ------
@@ -74,6 +77,7 @@ export default function CheckOut() {
       </div>*/}
       <div id="payment-widget" style={{ width: "100%" }} />
       <div id="agreement" style={{ width: "100%" }} />
+      <Guide />
       <button
         className={'btn btn-primary mb-4'}
         onClick={async () => {

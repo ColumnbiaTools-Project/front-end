@@ -2,7 +2,7 @@ import Image from "next/image";
 import Delivery from "@/components/payment/Delivery";
 
 type Props ={
-  filter : CartProduct[] | undefined
+  filter : CartProduct[] | undefined,
 }
 
 export default function PaymentItem({filter}: Props) {

@@ -11,7 +11,6 @@ export default async function HydratedPayment() {
 
   return (
     <Hydrate state={dehydrateState}>
-      <PayList />
     </Hydrate>
   )
 }
