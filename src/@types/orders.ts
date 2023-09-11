@@ -1,4 +1,3 @@
-import { Product } from "./products";
 
 export interface Order extends Product {
   quantity: number;

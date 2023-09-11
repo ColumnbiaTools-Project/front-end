@@ -1,7 +1,7 @@
 import { BsChevronRight } from "react-icons/bs";
 import Link from "next/link";
 import { getOrders } from "@/services/firebase/orders";
-import { Order } from "@/types/orders";
+import { Order } from "@/@types/orders";
 
 const orderProgress = [
   "주문접수", //2
