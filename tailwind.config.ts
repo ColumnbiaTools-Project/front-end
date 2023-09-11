@@ -8,7 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        primary: {
+          DEFAULT: "#000000",
+        },
+      },
+      fontFamily:{},
       height: {
         header: "80px",
         footer: "400px",
