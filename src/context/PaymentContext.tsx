@@ -14,7 +14,6 @@ export interface PaymentContextProps {
 
 const PaymentContext = createContext<PaymentContextProps | undefined>(undefined);
 
-
 export default function PaymentContextProvider({children}:{children:ReactNode}) {
   const [title, setTitle] = useState<string>("");
   const [totalPrice, setTotalPrice] = useState<number>(0);
