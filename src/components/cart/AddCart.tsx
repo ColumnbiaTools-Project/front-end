@@ -1,13 +1,15 @@
 "use client";
 
 
-import { useCart } from "@/Hooks/useCart";
+
 import { useQueryClient } from "@tanstack/react-query";
+import useCart from "@/Hooks/useCart";
 
 export default function AddCart() {
   const queryClient = useQueryClient();
   const { addOrUpdateItem } = useCart();
   const product: CartProduct = {
+    productId: "secondproduct",
     id: "secondproduct",
     title: "바주카550",
     price: 3500000,

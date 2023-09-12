@@ -1,13 +1,15 @@
-'use client'
-import { ChangeEvent } from "react";
-import { useCart } from "@/Hooks/useCart";
+"use client";
+import { ChangeEvent, useEffect, useState } from "react";
 import CartItem from "@/components/cart/CartItem";
 import CartTotalPayment from "@/components/cart/CartTotalPayment";
-import { useQueryClient } from "@tanstack/react-query";
-import { uid } from "@/Constants/constant";
+import { uid } from "@/Constants/Constant";
+import useCart from "@/Hooks/useCart";
+import getQueryClient from "@/app/getQueryClient";
+import SetOrder from "@/components/cart/SetOrder";
 
 export default function CartList() {
-  const queryClient = useQueryClient();
+  const [checked, setChecked] = useState<boolean>(false);
+  const queryClient = getQueryClient();
   const { cartQuery: { data: cart } } = useCart();
   const { addOrUpdateItem, removeItem } = useCart();
 
@@ -16,33 +18,36 @@ export default function CartList() {
   let totalPrice = filter && filter.reduce((prev, current) =>
     prev + current.price * current.quantity, 0);
 
+
   function handleCheck(event: ChangeEvent<HTMLInputElement>) {
     const { name, checked } = event.target;
     //전체 선택시
     if (name === "all") {
-      const filter: CartProduct[] | undefined
-        = cart && cart.map((item) => ({ ...item, checked: checked }));
-      filter && filter.forEach((item) => {
-        addOrUpdateItem.mutate(item,{
-          onSuccess: () => {
-            queryClient.refetchQueries(["cart"]);
-          }
-        })
-      })
-    }
+      cart && cart.forEach((item) => {
+        addOrUpdateItem.mutate({ ...item, checked: checked }
+          , {
+            onSuccess: () => {
+              queryClient.refetchQueries(["cart", uid]);
+            }
+          });
+        setChecked(checked);
+      });
+    } else if(!checked) { setChecked(false);}
+
     // 각각 선택시
     const selectedItem
       = cart?.find((item) => item.id === name);
     if (selectedItem) {
       selectedItem.checked = checked;
+      setChecked(checked);
       addOrUpdateItem.mutate(selectedItem);
     }
   }
 
   function handleDelete(id: string) {
-    removeItem.mutate(id,{
+    removeItem.mutate(id, {
       onSuccess: () => {
-        queryClient.refetchQueries(['cart',uid])
+        queryClient.refetchQueries(["cart", uid]);
         alert("삭제 되었습니다.");
       },
       onError: () => {
@@ -68,6 +73,7 @@ export default function CartList() {
             </div>
             <CartItem cartList={cart} handleCheck={handleCheck} handleDelete={handleDelete} />
             <CartTotalPayment totalPrice={totalPrice} />
+            <SetOrder checked={checked} />
           </>
         )
       }

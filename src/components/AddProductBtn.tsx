@@ -1,6 +1,6 @@
 "use client";
 
-import { addProduct } from "@/services/firebase/product";
+// import { addProduct } from "@/services/firebase/product";
 
 export default function AddProductBtn() {
 
@@ -9,13 +9,13 @@ export default function AddProductBtn() {
     const title: string = e.target.title.value;
     const description: string = e.target.description.value;
 
-    addProduct({
+/*    addProduct({
       title: title,
       description: description,
       price: "100",
       category: "test",
     });
-  };
+  };*/
 
   return (
     <form onSubmit={e => submitHandler(e)}>

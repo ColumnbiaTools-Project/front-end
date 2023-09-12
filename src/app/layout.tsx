@@ -1,12 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-
 import { Inter, Noto_Sans, Open_Sans } from "next/font/google";
 import Providers from "@/app/Provider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-
 
 // const sans = Noto_Sans({ subsets: ["latin"], weight: ["700","500","300"] });
 const sans = Open_Sans({ subsets: ["latin"]})
@@ -29,7 +26,6 @@ export default function RootLayout({ children }: {
     </section>
     <Footer />
     </body>
-
     </html>
   );
 }

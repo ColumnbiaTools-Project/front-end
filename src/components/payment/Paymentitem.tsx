@@ -5,10 +5,9 @@ import { usePaymentContext } from "@/context/PaymentContext";
 type Props = {
   filter: CartProduct[] | undefined,
 }
-
 export default function PaymentItem({ filter }: Props) {
   const paymentContext = usePaymentContext();
-  if (!filter || !paymentContext) {
+  if (!filter) {
     return null;
   }
   if (filter.length > 1) {
@@ -17,7 +16,6 @@ export default function PaymentItem({ filter }: Props) {
   } else {
     paymentContext?.setTitle(filter[0]?.title);
   }
-
 
 return (
   <>

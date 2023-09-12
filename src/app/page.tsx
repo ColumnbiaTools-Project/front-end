@@ -12,7 +12,7 @@ export default async function Home() {
           return <div key={product.id}>{product.title}</div>;
         })} */}
       </div>
-      <AddProductBtn />
+      {/*<AddProductBtn />*/}
     </>
   );
 }
