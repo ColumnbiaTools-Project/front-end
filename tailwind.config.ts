@@ -8,7 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        mainPrimary:"#222222"
+      },
       height: {
         header: "80px",
         footer: "400px",
