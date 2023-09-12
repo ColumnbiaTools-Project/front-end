@@ -9,8 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        primary: {
+          DEFAULT: "#000000",
+        },
         mainPrimary:"#222222"
       },
+      fontFamily:{},
       height: {
         header: "80px",
         footer: "400px",

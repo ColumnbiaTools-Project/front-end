@@ -1,3 +1,4 @@
+
 import { getProduct } from "@/services/firebase/product";
 import AddProductBtn from "@/components/AddProductBtn";
 import { Product } from "@/types/products";
@@ -7,6 +8,7 @@ import Link from "next/link";
 import Intro from '@/components/main/Intro';
 import Recommend from "@/components/main/Recommend";
 import Story from "@/components/main/Story";
+
 
 export default async function Home() {
   // const products = await getProduct();

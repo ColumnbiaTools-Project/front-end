@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function SideBar() {
   return (
-    <div className="bg-red-300 flex flex-col gap-y-10 w-44">
+    <div className="flex flex-col gap-y-10 w-44">
       <div className="mb-3">
         <Link href="/cart" className="font-bold">
           장바구니
