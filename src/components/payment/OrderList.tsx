@@ -1,19 +1,27 @@
 'use client'
 import OrderPerson from "@/components/payment/OrderPerson";
 import OrderAddress from "@/components/payment/OrderAddress";
-import { ChangeEvent, ChangeEventHandler } from "react";
-import CheckOut from "@/components/payment/CheckOut";
+import { ChangeEvent, FormEvent } from "react";
+import { usePaymentContext } from "@/context/PaymentContext";
 
 export default function OrderList() {
+  const paymentContext = usePaymentContext()
+  if(!paymentContext) return null;
+  const {setOrderName, setOrderEmail} = paymentContext;
   function handleChange (e: ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value);
+    if (e.target.name === 'orderName') {
+      setOrderName(e.target.value);
+    } else if (e.target.name === 'orderEmail') {
+      setOrderEmail(e.target.value);
+    }
   }
+
   return (
   <>
-    <section>
+    <div>
       <OrderPerson handleChange={handleChange}/>
       <OrderAddress handleChange={handleChange}/>
-    </section>
+    </div>
   </>
   )
 }

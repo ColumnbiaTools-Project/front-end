@@ -1,7 +1,6 @@
 import firebase_app from "./config";
 import { getDatabase, ref, set, get, remove } from "firebase/database";
 import { v4 } from "uuid";
-import { Order } from "@/@types/orders";
 
 // FIREBASE DB에서 product에 해당하는 데이터의 CRUD.
 const db = getDatabase(firebase_app);

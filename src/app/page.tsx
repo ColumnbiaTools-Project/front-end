@@ -1,7 +1,5 @@
 
-import { getProduct } from "@/services/firebase/product";
 import AddProductBtn from "@/components/AddProductBtn";
-import { Product } from "@/types/products";
 
 
 export default async function Home() {

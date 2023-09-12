@@ -4,6 +4,7 @@ import { useCart } from "@/Hooks/useCart";
 import CartItem from "@/components/cart/CartItem";
 import CartTotalPayment from "@/components/cart/CartTotalPayment";
 import { useQueryClient } from "@tanstack/react-query";
+import { uid } from "@/Constants/constant";
 
 export default function CartList() {
   const queryClient = useQueryClient();
@@ -38,11 +39,10 @@ export default function CartList() {
     }
   }
 
-
   function handleDelete(id: string) {
     removeItem.mutate(id,{
       onSuccess: () => {
-        queryClient.refetchQueries(['cart'])
+        queryClient.refetchQueries(['cart',uid])
         alert("삭제 되었습니다.");
       },
       onError: () => {
