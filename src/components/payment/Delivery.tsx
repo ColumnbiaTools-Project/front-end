@@ -1,4 +1,4 @@
-import { DELIVERYMONEY } from "@/constants/constant";
+import { DELIVERYMONEY } from "@/Constants/constant";
 
 export default function Delivery() {
 
