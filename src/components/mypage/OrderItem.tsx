@@ -1,17 +1,12 @@
-"use client";
-import { Order } from "@/types/orders";
 import Link from "next/link";
 import { BsChevronRight } from "react-icons/bs";
-import Image from "next/image";
+import ImageContainer from "@/components/mypage/ImageContainer";
 
 interface OrderItemProps {
   order: Order;
 }
 
 export default function OrderItem({ order }: OrderItemProps) {
-  const failedImage = (e: any) => {
-    e.target.src = "/images/no-image.png";
-  };
   return (
     <div className="w-full border-b-2 border-[#EEE] mb-10">
       <div className="flex w-full justify-between border-b-2 border-[#323232] pb-3">
@@ -27,15 +22,7 @@ export default function OrderItem({ order }: OrderItemProps) {
       </div>
       <div className="h-[170px] py-[10px] flex items-center justify-between">
         <div className="flex justify-center items-center gap-16">
-          <Image
-            src={order.image as string}
-            alt="사진"
-            width={150}
-            height={150}
-            onError={e => {
-              failedImage(e);
-            }}
-          />
+          <ImageContainer image={order.image} />
           <div className="flex flex-col justify-start items-start">
             <p className="text-xl font-medium text-black mb-2">{order.title}</p>
             <p className="text-xl font-medium text-[#888888]">{`${
