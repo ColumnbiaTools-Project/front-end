@@ -80,8 +80,6 @@ export default function Page() {
 
       // 이부분에 주문정보를 db에 저장한다.
       // 주문 정보 : orderId, productId,totalPrice
-      // sueccess하게 되면 임시저장소를 clear 한다.
-      localStorage.setItem('OrderList',String(totalPrice))
 
 
     } catch (error) {
