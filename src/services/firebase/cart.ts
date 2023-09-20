@@ -18,7 +18,3 @@ export async function addOrUpdateToCart(userId:string, product:CartProduct) {
 export async function removeFromCart(userId:string, productId:string) {
   return await remove(ref(db, `carts/${userId}/${productId}`));
 }
-
-export async function addTransaction(date:string, product:Product) {
-  return await set(ref(db, `transactions/${date}/${product.id}`), product);
-}

@@ -1,14 +1,20 @@
 "use client";
 import { getOrderList } from "@/services/paymentApi";
 import { useEffect, useState } from "react";
+import usePayments from "@/Hooks/usePayments";
+import getQueryClient from "@/app/getQueryClient";
+import { usePaymentContext } from "@/context/PaymentContext";
+import { PaymentDataType } from "@/@types/paymentsType";
 
 type Props = {
   orderId: string;
   paymentType: string;
   paymentKey: string;
 }
+
 export default function AddPayment({ orderId,paymentType, paymentKey }: Props) {
   const [orderList, setOrderList] = useState<Payment | undefined>();
+
   useEffect(() => {
     function fetchOrderList() {
       getOrderList(orderId).then((res) => {

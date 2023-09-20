@@ -1,3 +1,4 @@
+'use client'
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   addNewProduct,
@@ -5,12 +6,11 @@ import {
   getProduct, removeFromProduct
 } from "@/services/firebase/product";
 import { v4 } from "uuid";
+import getQueryClient from "@/app/getQueryClient";
 
-
-export function  useCart() {
-  const queryClient = useQueryClient();
+export default function  useCart() {
+  const queryClient = getQueryClient();
   const uid = v4()
-
 
   const productQuery = useQuery(["product"], () => getProduct(),{
     staleTime: 10 * 60 * 10,

@@ -53,7 +53,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   } catch (err: any) {
     console.error("err", err);
-
     return {
       redirect: {
         destination: `/fail?code=${err.code}&message=${err.message}`,
@@ -62,4 +61,3 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 }
-

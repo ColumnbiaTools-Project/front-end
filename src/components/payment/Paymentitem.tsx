@@ -6,10 +6,9 @@ type Props = {
   filter: CartProduct[] | undefined,
 }
 export default function PaymentItem({ filter }: Props) {
-  const paymentContext = usePaymentContext();
-  if (!filter) {
-    return null;
-  }
+  const paymentContext = usePaymentContext()
+  if (!filter) { return null;}
+  //title save
   if (filter.length > 1) {
     const count = filter.length - 1;
     paymentContext?.setTitle(`${filter[0].title} 외 ${count}`);

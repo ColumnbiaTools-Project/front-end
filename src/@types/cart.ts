@@ -1,5 +1,3 @@
-
-
 declare interface CartProduct {
   productId: string;
   title: string;
@@ -12,14 +10,6 @@ declare interface CartProduct {
   category: string;
   quantity:number;
 }
-
-declare interface PayData {
-  totalPrice: number,
-  orderName: string,
-  customerName: string,
-  customerEmail: string
-} {}
-
 declare interface Payment {
   version: string,
   paymentKey: string,
@@ -67,44 +57,4 @@ declare interface Payment {
   cashReceipt: object | null,
   cashReceipts: object | null,
   discount: object | null,
-}
-
-declare interface OrderObject {
-  orderId: string,
-  productId: string,
-  totalPrice: number,
-  OrderTime: string,
-  orderPerson: {
-    orderName: string,
-    orderEmail: string,
-    orderPhone: string,
-    orderTime?: string,
-  },
-  orderAddress: {
-    deliveryName: string,
-    zipCode: string,
-    address: string,
-    detailAddress: string,
-    phone: string,
-    message: string,
-  },
-}
-declare interface OrderType {
-  orderId: string,
-  productId: string,
-  totalPrice: number,
-  OrderTime: string,
-}
-declare interface OrderPerson {
-  orderName: string,
-  orderEmail: string,
-  orderPhone: string,
-}
-declare interface OrderAddressType {
-  deliveryName: string,
-  zipCode: string,
-  address: string,
-  detailAddress: string,
-  phone: string,
-  message: string,
 }

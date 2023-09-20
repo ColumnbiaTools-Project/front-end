@@ -1,14 +1,25 @@
 'use client'
 import Link from "next/link";
+import { usePaymentContext } from "@/context/PaymentContext";
 
-export default function SetOrder({checked} :{checked : boolean}) {
+
+
+export default function SetOrder() {
+  const paymentContext = usePaymentContext();
+
   return(
-    <div className={'mb-4 block'}>
+    <>
+      <div>
+        <span>{paymentContext?.totalPrice}</span>
+      </div>
+      <div className={'mb-4 block'}>
         <Link href={'/cart/payments'}>
           <button
-            className={`btn btn-primary ${checked ? 'flex' : 'hidden'}`}
+            className={`border border-1-solid rounded-[30px] p-2 bg-gray-75 disabled:opacity-75`}
           >주문하기</button>
         </Link>
-    </div>
+      </div>
+    </>
+
   )
 }

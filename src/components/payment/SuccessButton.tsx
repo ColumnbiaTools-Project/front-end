@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 export default function SuccessButton() {
   const router = useRouter()
   function handleClick() {
-    removeOrderList().then(() => router.push('/'))
+    router.push('/')
   }
   return (
     <>
