@@ -32,7 +32,9 @@ export default function OrderItem({ order }: OrderItemProps) {
         </div>
         <div>{order.status}</div>
         <div>
-          <button className="btn">배송조회</button>
+          {order.status === "배송중" && (
+            <button className="btn">배송조회</button>
+          )}
         </div>
       </div>
     </div>
