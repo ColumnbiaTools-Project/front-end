@@ -13,7 +13,7 @@ const config: Config = {
           DEFAULT: "#000000",
         },
       },
-      fontFamily:{},
+      fontFamily: {},
       height: {
         header: "80px",
         footer: "400px",
