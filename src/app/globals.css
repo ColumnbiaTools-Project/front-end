@@ -1,8 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-:root {
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -24,27 +22,91 @@ body {
 
 @layer base {
   .btn_large {
-    @apply flex w-[700px] h-[80px] justify-center items-center bg-black text-white text-2xl font-bold;
+    display: flex;
+    width: 700px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
   }
   .btn_medium_1 {
-    @apply flex w-[444px] h-[80px] justify-center items-center bg-black text-white text-2xl font-bold;
+    display: flex;
+    width: 444px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
   }
   .btn_medium_2_fill {
-    @apply flex w-[350px] h-[80px] justify-center items-center bg-black text-white text-2xl font-bold;
+    display: flex;
+    width: 350px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
   }
   .btn_medium_2_unfill {
-    @apply flex w-[350px] h-[80px] justify-center items-center bg-transparent text-black border-[1px] border-black text-2xl;
+    display: flex;
+    width: 350px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 2rem;
   }
   .btn_small_fill {
-    @apply flex w-[198px] h-[56px] justify-center items-center bg-black text-white text-xl font-normal;
+    display: flex;
+    width: 198px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: normal;
   }
   .btn_small_unfill {
-    @apply flex w-[198px] h-[56px] justify-center items-center bg-transparent text-black border-[1px] border-black text-xl;
+    display: flex;
+    width: 198px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 1.5rem;
   }
   .btn_tiny {
-    @apply flex w-[130px] h-[44px] justify-center items-center bg-transparent text-black border-[1px] border-black;
+    display: flex;
+    width: 130px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 1rem;
   }
   .btn_extra_small {
-    @apply flex w-[70px] h-[33px] justify-center items-center bg-transparent text-darkgray border-[1px] border-whitegray text-sm;
+    display: flex;
+    width: 70px;
+    height: 33px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: darkgray;
+    border: 1px solid whitegray;
+    font-size: 0.875rem;
   }
 }
