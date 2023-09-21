@@ -80,12 +80,7 @@ export default function PeriodSelector() {
       <div className="flex items-center justify-between gap-1">
         <div className="relative">
           <DatePicker
-            renderCustomHeader={({
-              date,
-              changeMonth,
-              increaseMonth,
-              decreaseMonth,
-            }) => (
+            renderCustomHeader={({ date, increaseMonth, decreaseMonth }) => (
               <CustomHeader
                 date={date}
                 increaseMonth={increaseMonth}
@@ -97,8 +92,6 @@ export default function PeriodSelector() {
             selectsStart
             startDate={inputStartDate}
             endDate={inputEndDate}
-            nextMonthButtonLabel=">"
-            previousMonthButtonLabel="<"
             locale={ko}
             customInput={<CustomInput />}
           ></DatePicker>
@@ -106,12 +99,7 @@ export default function PeriodSelector() {
         <p>~</p>
         <div className="relative">
           <DatePicker
-            renderCustomHeader={({
-              date,
-              changeMonth,
-              increaseMonth,
-              decreaseMonth,
-            }) => (
+            renderCustomHeader={({ date, increaseMonth, decreaseMonth }) => (
               <CustomHeader
                 date={date}
                 increaseMonth={increaseMonth}
@@ -123,14 +111,15 @@ export default function PeriodSelector() {
             selectsEnd
             startDate={inputStartDate}
             endDate={inputEndDate}
-            nextMonthButtonLabel=">"
-            previousMonthButtonLabel="<"
             locale={ko}
             customInput={<CustomInput />}
           ></DatePicker>
         </div>
       </div>
-      <button className="btn" onClick={e => handleSubmitPeriod(e)}>
+      <button
+        className="flex w-[87px] h-[33px] justify-center items-center bg-black text-white text-sm"
+        onClick={e => handleSubmitPeriod(e)}
+      >
         조회하기
       </button>
     </div>
@@ -143,7 +132,7 @@ const CustomInput = forwardRef(
     ref: React.Ref<HTMLButtonElement>,
   ) => (
     <button
-      className="w-[107px] h-[33px] text-[#888] border-[1px] border-[#d9d9d9] flex justify-center items-center text-sm"
+      className="w-[107px] h-[33px] text-darkgray border-[1px] border-whitegray flex justify-center items-center text-sm"
       onClick={onClick}
       ref={ref}
     >

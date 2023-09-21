@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
 }
 
@@ -25,27 +24,27 @@ body {
 
 @layer base {
   .btn_large {
-    @apply flex w-[700px] h-[80px] justify-center items-center bg-[#222] text-white text-2xl font-bold;
+    @apply flex w-[700px] h-[80px] justify-center items-center bg-black text-white text-2xl font-bold;
   }
   .btn_medium_1 {
-    @apply flex w-[444px] h-[80px] justify-center items-center bg-[#222] text-white text-2xl font-bold;
+    @apply flex w-[444px] h-[80px] justify-center items-center bg-black text-white text-2xl font-bold;
   }
   .btn_medium_2_fill {
-    @apply flex w-[350px] h-[80px] justify-center items-center bg-[#222] text-white text-2xl font-bold;
+    @apply flex w-[350px] h-[80px] justify-center items-center bg-black text-white text-2xl font-bold;
   }
   .btn_medium_2_unfill {
-    @apply flex w-[350px] h-[80px] justify-center items-center bg-transparent text-[#222] border-[1px] border-[#222] text-2xl;
+    @apply flex w-[350px] h-[80px] justify-center items-center bg-transparent text-black border-[1px] border-black text-2xl;
   }
   .btn_small_fill {
-    @apply flex w-[198px] h-[80px] justify-center items-center bg-[#222] text-white text-xl font-normal;
+    @apply flex w-[198px] h-[56px] justify-center items-center bg-black text-white text-xl font-normal;
   }
   .btn_small_unfill {
-    @apply flex w-[198px] h-[80px] justify-center items-center bg-transparent text-[#222] border-[1px] border-[#222] text-xl;
+    @apply flex w-[198px] h-[56px] justify-center items-center bg-transparent text-black border-[1px] border-black text-xl;
   }
   .btn_tiny {
-    @apply flex w-[130px] h-[80px] justify-center items-center bg-transparent text-[#222] border-[1px] border-[#222];
+    @apply flex w-[130px] h-[44px] justify-center items-center bg-transparent text-black border-[1px] border-black;
   }
   .btn_extra_small {
-    @apply flex w-[70px] h-[33px] justify-center items-center bg-transparent text-[#888] border-[1px] border-[#d9d9d9] text-sm;
+    @apply flex w-[70px] h-[33px] justify-center items-center bg-transparent text-darkgray border-[1px] border-whitegray text-sm;
   }
 }
