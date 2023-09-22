@@ -1,10 +1,11 @@
 'use client'
-import useProduct from "@/Hooks/useProduct";
+import useProduct from "@/hooks/useProduct";
 
 export default function Page() {
 
   const {productQuery : {data: product}} = useProduct();
   return (
+    
     <>
       {product && product.map((item) => (
         <ul>
