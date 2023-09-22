@@ -8,7 +8,7 @@ export default function MyPageLayout({
 }) {
   return (
     <section className="xl:w-[1280px] mb-[200px]">
-      <header className="border-b-2 w-full border-whitegray mt-[70px] mb-24 box-border">
+      <header className="border-b-2 w-full border-whitegray mb-24 box-border">
         <h2 className="text-[40px] font-semibold pb-[30px]">마이페이지</h2>
       </header>
       <div className="flex">
