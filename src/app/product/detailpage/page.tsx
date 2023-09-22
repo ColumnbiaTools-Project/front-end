@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <>
-      <h1>payment</h1>
+      <h1>Page 2</h1>
     </>
   )
 }

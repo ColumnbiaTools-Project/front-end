@@ -1,5 +1,6 @@
 import { QueryClient } from "@tanstack/react-query";
-import { cache } from "react";
 
-const getQueryClient = cache(() => new QueryClient());
+// QueryClient를 생성하고 내보내기
+const getQueryClient = () => { return new QueryClient(); }
+
 export default getQueryClient;

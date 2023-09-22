@@ -1,59 +1,32 @@
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
-export interface PaymentContextProps {
-  title: string;
-  totalPrice: number;
-  orderName: string;
-  orderEmail: string;
-  check: boolean;
-  setTitle: Dispatch<SetStateAction<string>>;
-  setTotalPrice: Dispatch<SetStateAction<number>>;
-  setOrderName: Dispatch<SetStateAction<string>>;
-  setOrderEmail: Dispatch<SetStateAction<string>>;
-  setCheck: Dispatch<SetStateAction<boolean>>;
-}
+'use client'
+import { createContext, ReactNode, useContext, useState } from "react";
+import { OrderPersonType, PaymentContextType } from "@/@types/paymentsType";
 
-const PaymentContext = createContext<PaymentContextProps | undefined>(
-  undefined,
-);
-
-export default function PaymentContextProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
+const PaymentContext = createContext<PaymentContextType | undefined>(undefined);
+export default function PaymentContextProvider({ children }: { children: ReactNode }) {
+  const [productId, setProductId] = useState<string[]>([]);
   const [title, setTitle] = useState<string>("");
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [orderName, setOrderName] = useState<string>("");
-  const [orderEmail, setOrderEmail] = useState<string>("");
-  const [check, setCheck] = useState<boolean>(false);
+  const [updateOrderPerson, setUpdateOrderPerson]
+    = useState<OrderPersonType | undefined>(undefined);
 
   return (
-    <PaymentContext.Provider
-      value={{
+    <PaymentContext.Provider value={
+      {
+        productId,
         title,
         totalPrice,
-        orderName,
-        orderEmail,
+        updateOrderPerson,
+        setUpdateOrderPerson,
+        setProductId,
         setTitle,
         setTotalPrice,
-        setOrderName,
-        setOrderEmail,
-        check,
-        setCheck,
-      }}
-    >
+      }}>
       {children}
     </PaymentContext.Provider>
   );
 }
 
-export function usePaymentContext(): PaymentContextProps | undefined {
+export function usePaymentContext(): PaymentContextType | undefined {
   return useContext(PaymentContext);
 }

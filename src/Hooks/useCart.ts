@@ -1,26 +1,21 @@
+'use client'
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
 import { uid } from "@/Constants/Constant";
-import { usePaymentContext } from "@/context/PaymentContext";
-import { addOrUpdateToCart, getCart, removeFromCart } from "@/services/firebase/payment";
+import { addOrUpdateToCart, getCart, removeFromCart } from "@/services/firebase/cart";
+import getQueryClient from "@/app/getQueryClient";
 
-
-export function  useCart() {
-  const queryClient = useQueryClient();
-  const paymentContext = usePaymentContext()
-
-
-  const cartQuery = useQuery(["cart"], () => getCart('pelican8118'),{
+export default function  useCart() {
+  const queryClient = getQueryClient();
+  const cartQuery
+    = useQuery(["cart"], () => getCart(uid),{
     staleTime: 10 * 60,
   });
-
 
   const addOrUpdateItem = useMutation(
     (cartData: CartProduct) => addOrUpdateToCart(uid, cartData),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['cart', uid]);
-        paymentContext?.setCheck(!paymentContext.check);
       },
       onError: (error) => {
         console.error("카트 항목 업데이트 실패:", error);
@@ -37,5 +32,4 @@ export function  useCart() {
     },
   });
 
-  return { cartQuery, addOrUpdateItem, removeItem };
-}
+  return { cartQuery, addOrUpdateItem, removeItem };}

@@ -18,12 +18,14 @@ export default function OrderPerson( {handleChange}: Props) {
             onChange={handleChange}
             className={'w-[300px] border border-1px border-black'}
             type="text" id="orderName" />
+
           <label htmlFor="orderCellPhone">핸드폰 번호</label>
           <input
             name={'orderCellPhone'}
             onChange={handleChange}
             className={'w-[300px] border border-1px border-black'}
             type="text" id="orderCellPhone" />
+
           <label htmlFor="orderEmail">이메일</label>
           <input
             name={'orderEmail'}

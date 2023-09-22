@@ -2,16 +2,24 @@
 import Link from "next/link";
 import { usePaymentContext } from "@/context/PaymentContext";
 
+
+
 export default function SetOrder() {
-  const paymentContext = usePaymentContext()
+  const paymentContext = usePaymentContext();
 
   return(
-    <div className={'mb-4'}>
-        <Link href={'/cart/cartorder'}>
+    <>
+      <div>
+        <span>{paymentContext?.totalPrice}</span>
+      </div>
+      <div className={'mb-4 block'}>
+        <Link href={'/cart/payments'}>
           <button
-            className={`btn btn-primary mx-auto  ${paymentContext?.check ? 'flex': 'hidden'}`}
+            className={`border border-1-solid rounded-[30px] p-2 bg-gray-75 disabled:opacity-75`}
           >주문하기</button>
         </Link>
-    </div>
+      </div>
+    </>
+
   )
 }

@@ -1,7 +1,7 @@
 
 import CalTotalMoney from "@/components/payment/CalTotalMoney";
 import PaymentItem from "@/components/payment/Paymentitem";
-import { useCart } from "@/Hooks/useCart";
+import useCart from "@/Hooks/useCart";
 
 export default function PayList() {
   const { cartQuery: { data: cart } } = useCart();

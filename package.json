@@ -11,7 +11,9 @@
   "dependencies": {
     "@tanstack/react-query": "^4.35.0",
     "@tanstack/react-query-devtools": "^4.35.0",
+    "@tosspayments/payment-sdk": "^1.6.5",
     "@tosspayments/payment-widget-sdk": "^0.9.3",
+    "@types/date-fns": "^2.6.0",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
     "@types/react-datepicker": "^4.15.0",
