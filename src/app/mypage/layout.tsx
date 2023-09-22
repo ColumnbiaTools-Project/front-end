@@ -7,8 +7,8 @@ export default function MyPageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="xl:w-[1280px] mb-[200px]">
-      <header className="border-b-2 w-full border-whitegray mt-[70px] mb-24 box-border">
+    <section className="container container-xl mx-auto mb-[200px]">
+      <header className="border-b-2 w-full border-whitegray h-[304px] mb-24 box-border flex justify-start items-end">
         <h2 className="text-[40px] font-semibold pb-[30px]">마이페이지</h2>
       </header>
       <div className="flex">
