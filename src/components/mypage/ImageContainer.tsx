@@ -3,9 +3,10 @@ import Image from "next/image";
 
 interface Props {
   image: string | undefined;
+  size: number;
 }
 
-export default function ImageContainer({ image }: Props) {
+export default function ImageContainer({ image, size }: Props) {
   const failedImage = (e: any) => {
     e.target.src = "/images/no-image.png";
   };
@@ -13,8 +14,8 @@ export default function ImageContainer({ image }: Props) {
     <Image
       src={image as string}
       alt="사진"
-      width={150}
-      height={150}
+      width={size}
+      height={size}
       onError={e => {
         failedImage(e);
       }}
