@@ -1,10 +1,9 @@
 
-import { getProduct } from "@/services/firebase/product";
 import AddProductBtn from "@/components/AddProductBtn";
 import Image from "next/image";
 import Intro from '@/components/main/Intro';
-import Recommend from "@/components/main/Recommend";
-import Story from "@/components/main/Story";
+import Recommend from "@/components/main/recommend";
+import Story from "@/components/main/story";
 
 
 export default async function Home() {

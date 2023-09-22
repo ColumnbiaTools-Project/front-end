@@ -1,9 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -14,4 +11,102 @@
 }
 
 body {
+  .react-datepicker__header {
+    background-color: white;
+    border: none;
+  }
+  .react-datepicker__month-container {
+    padding: 15px;
+  }
+}
+
+@layer base {
+  .btn_large {
+    display: flex;
+    width: 700px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .btn_medium_1 {
+    display: flex;
+    width: 444px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .btn_medium_2_fill {
+    display: flex;
+    width: 350px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .btn_medium_2_unfill {
+    display: flex;
+    width: 350px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 2rem;
+  }
+  .btn_small_fill {
+    display: flex;
+    width: 198px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+  .btn_small_unfill {
+    display: flex;
+    width: 198px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 1.5rem;
+  }
+  .btn_tiny {
+    display: flex;
+    width: 130px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 1rem;
+  }
+  .btn_extra_small {
+    display: flex;
+    width: 70px;
+    height: 33px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: darkgray;
+    border: 1px solid whitegray;
+    font-size: 0.875rem;
+  }
 }

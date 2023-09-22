@@ -1,12 +1,14 @@
+'use client'
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { addOrUpdateToCart, getCart, removeFromCart } from "@/services/firebase/product";
-import { uid } from "@/constants/constant";
+import { uid } from "@/Constants/Constant";
+import { addOrUpdateToCart, getCart, removeFromCart } from "@/services/firebase/cart";
+import getQueryClient from "@/app/getQueryClient";
 
-export function  useCart() {
-  const queryClient = useQueryClient();
-
-  const cartQuery = useQuery(["cart"], () => getCart('pelican8118'),{
-    staleTime: 10 * 60
+export default function  useCart() {
+  const queryClient = getQueryClient();
+  const cartQuery
+    = useQuery(["cart"], () => getCart(uid),{
+    staleTime: 10 * 60,
   });
 
   const addOrUpdateItem = useMutation(
@@ -30,5 +32,4 @@ export function  useCart() {
     },
   });
 
-  return { cartQuery, addOrUpdateItem, removeItem };
-}
+  return { cartQuery, addOrUpdateItem, removeItem };}

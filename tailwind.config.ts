@@ -11,11 +11,15 @@ const config: Config = {
       colors: {
         primary: {
           DEFAULT: "#000000",
+          white: "#FFFFFF",
         },
         mainPrimary:"#222222",
-        mainGray:"#F5F5F7"
+        mainGray:"#F5F5F7",
+        black: "#222",
+        whitegray: "#d9d9d9",
+        darkgray: "#888",
       },
-      fontFamily:{},
+      fontFamily: {},
       height: {
         header: "80px",
         footer: "400px",

@@ -15,32 +15,37 @@ export default function OrderAddress({handleChange} : Props) {
         <input
           onChange={handleChange}
           className={'border border-1px border-black'}
-          type="text" id="deliveryName" />
-        <label htmlFor="postNuember">우편번호</label>
+          type="text" name="deliveryName" />
+
+        <label htmlFor="postNumber">우편번호</label>
         <input
           onChange={handleChange}
           className={'border border-1px border-black'}
-          type="text" id="postNuember" />
+          type="text" name="postNumber" />
+
         <label htmlFor="address">주소</label>
         <input
           onChange={handleChange}
           className={'border border-1px border-black'}
-          type="text" id="address" />
-        <label htmlFor="detailaddress">상세주소</label>
+          type="text" name="address" />
+
+        <label htmlFor="detailAddress">상세주소</label>
         <input
           onChange={handleChange}
           className={'border border-1px border-black'}
-          type="text" id="detailaddress" />
+          type="text" name="detailAddress" />
+
         <label htmlFor="phone">연락처</label>
         <input
           onChange={handleChange}
           className={'border border-1px border-black'}
-          type="text" id="phone" />
+          type="text" name="phone" />
+
         <label htmlFor="message">배송요청사항</label>
         <input
           onChange={handleChange}
           className={'border border-1px border-black'}
-          type="text" id="message" />
+          type="text" name="message" />
       </div>
     </section>
   )
