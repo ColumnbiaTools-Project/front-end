@@ -20,7 +20,7 @@ export default function Page() {
       {/*<AddCart />*/}
       {!hasProducts && <span>장바구니에 상품이 없습니다.</span>}
       {hasProducts && (
-        <section className={"container container-xl mx-auto"}>
+        <section className={"container mx-auto"}>
           <h1
             className={
               "text-[40px] font-bold h-[304px] flex justify-start items-end"
