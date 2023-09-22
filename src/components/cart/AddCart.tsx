@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useCart } from "@/Hooks/useCart";
+import { useCart } from "@/hooks/useCart";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function AddCart() {

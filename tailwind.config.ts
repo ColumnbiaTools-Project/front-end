@@ -12,7 +12,8 @@ const config: Config = {
         primary: {
           DEFAULT: "#000000",
         },
-        mainPrimary:"#222222"
+        mainPrimary:"#222222",
+        mainGray:"#F5F5F7"
       },
       fontFamily:{},
       height: {

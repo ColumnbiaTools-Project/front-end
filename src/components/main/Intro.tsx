@@ -16,10 +16,10 @@ export default function Intro () {
         </p>
       </div>
       <div className="absolute bottom-0 left-0">
-        <Image src="/Use1.png" width={650} height={602} alt="use1"/>
+        <Image src="/main/main-use1.png" width={650} height={500} alt="use1"/>
       </div>
       <div className="absolute top-[120px] right-0">
-        <Image src="/Use2.png" width={542} height={743} alt="use1"/>
+        <Image src="/main/main-use2.png" width={542} height={744} alt="use2"/>
       </div>
       <Link href={'/product'} className="absolute bottom-0 right-[34px] flex">
         <p className="text-lg">전체 상품 보기</p>

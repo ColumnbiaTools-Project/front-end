@@ -16,9 +16,6 @@ export default function Header() {
       </div>
       <div className="flex">
         <Link href="/login" className="mx-3">
-          <HiSearch className="w-8 h-8 text-white"/>
-        </Link>
-        <Link href="/mypage" className="mx-3">
           <FiUser className="w-8 h-8 text-white"/>
         </Link>
         <Link href="/cart" className="mx-3">
