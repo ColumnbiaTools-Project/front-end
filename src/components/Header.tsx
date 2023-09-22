@@ -9,7 +9,7 @@ export default function Header() {
       <Link href="/product">Products</Link>
       <Link href="/login">Login</Link>
       <Link href="/mypage">MyPage</Link>
-      <Link href="/cart">Cart</Link>
+      {/*<Link href="/cart">Cart</Link>*/}
       <Link href={'/bucket'}>bucket</Link>
     </div>
   );
