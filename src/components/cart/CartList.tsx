@@ -17,9 +17,8 @@ export default function CartList() {
     prev + current.price * current.quantity, 0)
   //context totalPrice 입력
   price && paymentContext?.setTotalPrice(price);
+
   console.log(paymentContext?.productId);
-
-
 
   // 전체 check만 해제한다.
   function unChecked() {
@@ -41,8 +40,7 @@ export default function CartList() {
       addOrUpdateItem.mutate({ ...item, checked: checked }, {
         onSuccess: () => {
           queryClient.invalidateQueries(["cart", uid]);
-          paymentContext?.setProductId((prev) => [...prev, item.productId]);
-          paymentContext?.setCheck(true);
+          paymentContext?.setProductId((prev) => [...prev, item.id]);
         }
       });
     });
@@ -51,7 +49,6 @@ export default function CartList() {
   function handleCheckBox(e:ChangeEvent<HTMLInputElement>){
     // 전체 체크 박스를 체크한다
     const {checked} = e.target;
-    paymentContext?.setCheck(checked);
     console.log(checked);
   }
 
@@ -69,7 +66,7 @@ export default function CartList() {
         selectedItem.checked = checked;
         addOrUpdateItem.mutate(selectedItem, {
           onSuccess: () => {
-            queryClient.refetchQueries(["cart", uid]);
+            queryClient.invalidateQueries(["cart", uid]);
             paymentContext?.setProductId((prev) => [...prev, selectedItem.productId]);
           }
         });
@@ -85,7 +82,7 @@ export default function CartList() {
   function handleDelete(id: string) {
     removeItem.mutate(id, {
       onSuccess: () => {
-        queryClient.refetchQueries(["cart", uid]);
+        queryClient.invalidateQueries(["cart", uid]);
         alert("삭제 되었습니다.");
       },
       onError: () => {
@@ -99,7 +96,7 @@ export default function CartList() {
     <>
       <div className={"flex"}>
         <input
-          onChange={handleCheckBox}
+          // onChange={handleCheckBox}
           name="all"
           className="w-[24px] mr-3"
           type="checkbox"
@@ -112,9 +109,9 @@ export default function CartList() {
           <ul className={"flex justify-center items-center gap-2 "} key={index}>
             <input
               name={item.id}
-              onChange={handleCheck}
+              // onChange={handleCheck}
               type="checkbox"
-              checked={paymentContext?.check && paymentContext?.check ? paymentContext?.check : item.checked}
+              checked={item.checked}
             />
             <Image
               src={item.image}
@@ -131,7 +128,7 @@ export default function CartList() {
             <li>{item.quantity}</li>
             {/*플러스 버튼*/}
             <li>
-              <button onClick={() =>handleDelete && handleDelete(item.id)}>Delete</button>
+              <button onClick={() => handleDelete(item.id)}>Delete</button>
             </li>
           </ul>
         ))}

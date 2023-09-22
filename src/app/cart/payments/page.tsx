@@ -1,15 +1,12 @@
 "use client";
 import PayList from "@/components/payment/PayList";
 import OrderList from "@/components/payment/OrderList";
-import { usePaymentContext } from "@/context/PaymentContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CheckOut from "@/components/payment/Checkout";
 import { OrderPersonType } from "@/@types/paymentsType";
 
 
 export default function Page() {
-  const paymentContext = usePaymentContext();
-  const totalPrice = paymentContext?.totalPrice;
   const [orderPerson, setOrderPerson] = useState<OrderPersonType>({
     orderName: "",
     orderEmail: "",

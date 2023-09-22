@@ -12,7 +12,7 @@ interface Payment {
 }
 
 export default function SuccessPage(payment: any) {
-  const { orderId, paymentKey, paymentType } = payment.searchParams;
+  const { orderId, paymentKey, paymentType, } = payment.searchParams;
 
   return (
     <section className={'container w-1020 block mx-auto mt-4'}>
@@ -20,7 +20,7 @@ export default function SuccessPage(payment: any) {
         className={"flex flex-col items-center justify-center"}
       >
         <h1>결제 성공</h1>
-        <AddPayment orderId={orderId} paymentKey={paymentKey} paymentType={paymentType} />
+        <AddPayment orderId={orderId} paymentKey={paymentKey} paymentType={paymentType}  />
         <SuccessButton />
       </div>
     </section>

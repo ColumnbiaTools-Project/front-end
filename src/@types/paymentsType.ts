@@ -34,7 +34,7 @@ export interface PaymentContextType2 {
   setCheck: Dispatch<SetStateAction<boolean>>;
 }
 
-export type PaymentDataType = {
+declare type PaymentDataType = {
   title: string;
   orderId?:string;
   productId:string [];
@@ -51,7 +51,7 @@ export type PaymentDataType = {
   message: string;
 }
 
-export type PaymentStore = {
+declare type PaymentStore = {
   paymentData: PaymentDataType; // PaymentDataType 타입 추가
   setTotalPrice: (totalPrice: number) => void;
 };
@@ -59,6 +59,8 @@ export type PaymentContextType = {
   title: string;
   productId: string[];
   totalPrice: number;
+  updateOrderPerson: OrderPersonType | undefined;
+  setUpdateOrderPerson: Dispatch<SetStateAction<OrderPersonType|undefined>>;
   setTotalPrice:Dispatch<SetStateAction<number>>;
   setTitle:Dispatch<SetStateAction<string>>;
   setProductId:Dispatch<SetStateAction<Array<string>>>;
@@ -83,4 +85,9 @@ export type OrderPersonType = {
 export type OrderPersonProps = {
   orderPerson: OrderPersonType;
   setOrderPerson: Dispatch<SetStateAction<OrderPersonType>>;
+}
+
+export type Test = {
+  title?:string,
+  orderId?: string,
 }

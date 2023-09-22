@@ -2,7 +2,7 @@ import getQueryClient from "@/app/getQueryClient";
 import { dehydrate } from "@tanstack/query-core";
 import { Hydrate } from "@tanstack/react-query";
 import CartList from "@/components/cart/CartList";
-import { getCart } from "@/services/firebase/payment";
+import { getCart } from "@/services/firebase/cart";
 
 export default async function HydratedCart() {
   const queryClient = getQueryClient();

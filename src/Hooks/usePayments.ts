@@ -3,7 +3,7 @@ import { useMutation, useQuery,} from "@tanstack/react-query";
 import { uid } from "@/Constants/Constant";
 import getQueryClient from "@/app/getQueryClient";
 import { addOrUpdateToPayment, getPayment, removeFromPayment } from "@/services/firebase/payments";
-import { OrderPersonType, } from "@/@types/paymentsType";
+import { OrderPersonType, Test } from "@/@types/paymentsType";
 
 export default function  usePayments() {
   const queryClient = getQueryClient();
@@ -16,18 +16,29 @@ export default function  usePayments() {
     (paymentData: OrderPersonType) => addOrUpdateToPayment(uid, paymentData),
     {
       onSuccess: () => {
-        queryClient.refetchQueries(['payments', uid]);
+        queryClient.invalidateQueries(['payments', uid]);
       },
       onError: (error) => {
         console.error("카트 항목 업데이트 실패:", error);
       },
     }
   );
+  /*const addOrUpdatePayment = useMutation(
+    (paymentData: string) => addOrUpdateToPayment(uid, paymentData),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['payments', uid]);
+      },
+      onError: (error) => {
+        console.error("카트 항목 업데이트 실패:", error);
+      },
+    }
+  );*/
 
   const removePayment
     = useMutation((id: string) => removeFromPayment(uid, id), {
     onSuccess: () => {
-      queryClient.refetchQueries(['payments', uid]);
+      queryClient.invalidateQueries(['payments', uid]);
     },
     onError: (error) => {
       console.error("카트 항목 제거 실패:", error);

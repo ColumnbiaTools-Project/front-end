@@ -15,6 +15,6 @@ export async function addOrUpdateToCart(userId:string, product:CartProduct) {
 }
 
 //제품 등록 삭제
-export async function removeFromCart(userId:string, productId:string) {
-  return await remove(ref(db, `carts/${userId}/${productId}`));
+export async function removeFromCart(userId:string, id:string) {
+  return await remove(ref(db, `carts/${userId}/${id}`));
 }
