@@ -103,13 +103,31 @@ export default function AddProducts() {
       <form onSubmit={onSubmit} className="flex justify-center items-center">
         <div className="flex flex-col justify-center items-center gap-2">
           <label>제품명</label>
-          <input type="text" value={title} onChange={onChangeTitle} />
+          <input
+            className="input input-bordered"
+            type="text"
+            value={title}
+            onChange={onChangeTitle}
+          />
           <label>가격</label>
-          <input type="number" value={price} onChange={onChangePrice} />
+          <input
+            className="input input-bordered"
+            type="number"
+            value={price}
+            onChange={onChangePrice}
+          />
           <label>설명</label>
-          <textarea value={description} onChange={onChangeDescription} />
+          <textarea
+            className="textarea textarea-bordered"
+            value={description}
+            onChange={onChangeDescription}
+          />
           <label>카테고리</label>
-          <select value={category} onChange={onChangeCategory}>
+          <select
+            className="select select-bordered"
+            value={category}
+            onChange={onChangeCategory}
+          >
             {ProductCategory.map((category, index) => (
               <option key={index} value={category}>
                 {category}
@@ -147,12 +165,14 @@ export default function AddProducts() {
                   </li>
                 );
               }}
+              className="bg-white"
             />
           </div>
           <label>유튜브 링크</label>
           {youtubeURLs.map((url, index) => (
             <div key={index}>
               <input
+                className="input input-bordered"
                 type="text"
                 value={url}
                 onChange={e => onChangeYoutubeURL(e, index)}
@@ -167,6 +187,7 @@ export default function AddProducts() {
           {recommendations.map((recommendation, index) => (
             <div key={index}>
               <input
+                className="input input-bordered"
                 type="text"
                 value={recommendation}
                 onChange={e => onChangeRecommendation(e, index)}
@@ -181,8 +202,13 @@ export default function AddProducts() {
             추천제품 추가(id)
           </button>
           <label>특징</label>
-          <input type="text" value={features[0]} onChange={onChangeFeature} />
-          <button className="btn" type="submit">
+          <input
+            className="input input-bordered"
+            type="text"
+            value={features[0]}
+            onChange={onChangeFeature}
+          />
+          <button className="btn bg-green-200" type="submit">
             제품 추가하기
           </button>
         </div>
