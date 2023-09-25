@@ -2,6 +2,7 @@ export const uid = "pelican8118";
 export const DELIVERYMONEY = 0;
 
 export const ProductCategory = [
+  "All",
   "The Tool Sets",
   "Tool Cases",
   "Tomahawk Smoothing Blades",
