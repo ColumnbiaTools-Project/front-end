@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useRef, useState } from "react";
+import { ChangeEventHandler, useRef, useState } from "react";
 
 type Props = {
   handleChange: ChangeEventHandler<HTMLInputElement>;
@@ -10,11 +10,14 @@ const src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
 const LABELSTYLE = "mt-[50px] mb-[22px] text-[20px] text-darkgray";
 const INPUTSTYLE = "w-full text-[20px] px-2 border-b-2 border-black";
 
-export default function OrderAddress({ handleChange }: Props) {
+export default function OrderAddress({handleChange }: Props) {
   const postcodeRef = useRef<HTMLDivElement | null>(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState<boolean>(false);
   const [roadAddress, setRoadAddress] = useState<string>("");
-  const [zipCode, setZipCode] = useState('')
+  const [zipCode, setZipCode] = useState("");
+
+
+
   // 주소 검색 스크립트 로딩 함수
   const loadScript = () => {
     const script = document.createElement("script");
@@ -68,7 +71,7 @@ export default function OrderAddress({ handleChange }: Props) {
               onChange={handleChange}
               className={"w-full text-[20px] px-2 border-b-2 border-black"}
               type="text"
-              name="postNumber"
+              name="zipCode"
               value={zipCode}
             />
           </div>
