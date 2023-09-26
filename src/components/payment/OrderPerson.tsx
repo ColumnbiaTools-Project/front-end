@@ -1,6 +1,5 @@
 "use client";
 import { ChangeEvent, ChangeEventHandler, useContext, useState } from "react";
-import { usePaymentContext } from "@/context/PaymentContext";
 
 type Props = {
   handleChange: ChangeEventHandler<HTMLInputElement>
@@ -20,7 +19,7 @@ export default function OrderPerson({ handleChange }: Props) {
   }
 
   return (
-    <div className={"flex justify-between items-start mt-[40px]"}>
+    <section className={"flex justify-between items-start mt-[40px]"}>
       <div>
         <span className={"text-[24px] font-bold"}>주문자 정보</span>
       </div>
@@ -55,13 +54,6 @@ export default function OrderPerson({ handleChange }: Props) {
               type="text" id="orderEmail"
               value={data}
             />
-            {/*<input
-              name={"directEmail3"}
-              onChange={handleChange}
-              type="text"
-              id={'directEmail3'}
-              value={data}
-              />*/}
             <select
               name="selectEmail"
               onChange={handleSelect}
@@ -79,6 +71,6 @@ export default function OrderPerson({ handleChange }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

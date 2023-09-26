@@ -1,11 +1,11 @@
 'use client'
 import { Dispatch, SetStateAction } from "react";
 
-declare global {
+/*declare global {
   interface Window {
     daum: any; // 여기에 사용하는 Daum 우편번호 서비스의 타입을 정확하게 명시하세요.
   }
-}
+}*/
 
 export interface PaymentContextType2 {
   title: string;
@@ -82,7 +82,7 @@ export type OrderPersonType = {
   deliveryName:string;
   zipCode:string;
   address: string,
-  detailAddress: string;
+  detail: string;
   phone: string;
   message: string;
 }
@@ -96,3 +96,4 @@ export type Test = {
   title?:string,
   orderId?: string,
 }
+

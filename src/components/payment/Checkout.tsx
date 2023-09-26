@@ -3,18 +3,13 @@ import { useAsync } from "react-use";
 import { loadPaymentWidget, PaymentWidgetInstance } from "@tosspayments/payment-widget-sdk";
 import { nanoid } from "nanoid";
 import { usePaymentContext } from "@/context/PaymentContext";
-import { OrderPersonType } from "@/@types/paymentsType";
 import usePayments from "@/Hooks/usePayments";
-import getQueryClient from "@/app/getQueryClient";
-import { uid } from "@/Constants/Constant";
-import { addOrUpdateToPayment } from "@/services/firebase/payments";
-import { useQueryClient } from "@tanstack/react-query";
 
 const clientKey = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY || "";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
 
 type Props = {
-  orderPerson: OrderPersonType,
+  orderPerson: OrderPersonInputType,
 }
 
 export default function CheckOut({ orderPerson }: Props) {
@@ -24,14 +19,13 @@ export default function CheckOut({ orderPerson }: Props) {
   const paymentMethodsWidgetRef = useRef<ReturnType<PaymentWidgetInstance["renderPaymentMethods"]> | null>(null);
   const { addOrUpdatePayment } = usePayments();
   const [price, setPrice] = useState(0);
-  // const title = paymentContext?.title;
   const totalPrice = paymentContext?.totalPrice;
   const orderId = nanoid(10);
   const productId = paymentContext?.productId;
 
-  const updateOrderPerson = useMemo(() => ({
+  const updateOrderPerson
+    = useMemo(() => ({
     ...orderPerson,
-    // title: title,
     totalPrice: totalPrice,
     orderId: orderId,
     productId: productId
@@ -82,8 +76,6 @@ export default function CheckOut({ orderPerson }: Props) {
         customerEmail: orderPerson.orderEmail,
         successUrl: `${window.location.origin}/cart/payments/complete`,
         failUrl: `${window.location.origin}/fail`
-      }).then(() => {
-        addOrUpdatePayment.mutate(updateOrderPerson);
       });
     } catch (error) {
       console.error(error);
