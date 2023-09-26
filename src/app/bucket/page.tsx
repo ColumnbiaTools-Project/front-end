@@ -18,7 +18,11 @@ export default function Page() {
   };
   return (
     <>
-      {!hasProducts && <span className={'h-[300px] flex justify-start items-end'}>장바구니에 상품이 없습니다.</span>}
+      {!hasProducts && (
+        <span className={"h-[300px] flex justify-start items-end"}>
+          장바구니에 상품이 없습니다.
+        </span>
+      )}
       {/*<AddCart />*/}
       {hasProducts && (
         <section className={"container w-[1280px] mx-auto "}>

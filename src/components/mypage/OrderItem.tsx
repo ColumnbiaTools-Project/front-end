@@ -20,7 +20,7 @@ export default function OrderItem({ order }: OrderItemProps) {
       </div>
       <div className="h-[170px] py-[10px] flex items-center justify-between">
         <div className="flex justify-center items-center gap-16 w-1/3">
-          <ImageContainer image={order.image} />
+          <ImageContainer image={order.images} size={150} />
           <div className="flex flex-col justify-start items-start">
             <p className="font-normal text-black mb-2">{order.title}</p>
             <p className="font-normal text-darkgray whitespace-nowrap">{`${
