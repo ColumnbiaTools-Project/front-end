@@ -1,7 +1,7 @@
 'use client'
 import useCart from "@/Hooks/useCart";
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePaymentContext } from "@/context/PaymentContext";
 
 type Props = {
@@ -12,7 +12,7 @@ export default function AllChoice({ cart }: Props) {
   const PriceContext = usePaymentContext();
   const { addOrUpdateItem } = useCart();
   const queryClient = useQueryClient();
-  if (!choice) { PriceContext?.setTotalPrice(0)}
+  if(!choice) {PriceContext?.setTotalPrice(0)}
 
   const handleChoice = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChoice(e.target.checked);

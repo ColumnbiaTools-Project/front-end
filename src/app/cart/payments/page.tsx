@@ -1,40 +1,58 @@
 "use client";
 import PayList from "@/components/payment/PayList";
 import OrderList from "@/components/payment/OrderList";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import CheckOut from "@/components/payment/Checkout";
-import { OrderPersonType } from "@/@types/paymentsType";
 import useCart from "@/Hooks/useCart";
+import OrderAddress from "@/components/payment/OrderAddress";
 import { usePaymentContext } from "@/context/PaymentContext";
-import DaumZipCode from "@/components/payment/DaumZipCode";
+
+//productId 입력
 
 
 export default function Page() {
-  const [orderPerson, setOrderPerson] = useState<OrderPersonType>({
+  const orderContext = usePaymentContext();
+  const [orderPerson, setOrderPerson] = useState<OrderPersonInputType>({
     orderName: "",
-    productName: "",
+    productName:  "",
     orderEmail: "",
-    orderTime: "",
-    orderPhone: "",
+    orderPhone: ""
+  });
+  const [orderAddress, setOrderAddress] = useState<OrderAddressType>({
     deliveryName: "",
-    zipCode: "",
-    address: "",
     detailAddress: "",
     phone: "",
     message: ""
   });
+
   const { cartQuery: { data: cart } } = useCart();
   const filter: CartProduct[] | undefined = cart && cart.filter((item) => item.checked);
-  if (!filter) { return null;}
+  if (!filter) {
+    return null;
+  }
 
   useEffect(() => {
     if (filter.length > 1) {
       const count = filter.length - 1;
-      setOrderPerson({...orderPerson, productName:`${filter[0].title} 외 ${count}`});
+      setOrderPerson({ ...orderPerson, productName: `${filter[0].title} 외 ${count}` });
     } else {
-      setOrderPerson({...orderPerson, productName:filter[0]?.title});
+      setOrderPerson({ ...orderPerson, productName: filter[0]?.title });
     }
-  },[])
+    //productId입력한다. filter(Boolean)을 사용하여 falsy 값 undefined, null ,0 ,""등을 제거한다.
+    const filters = filter.map(item => (item.checked && item.id)).filter(Boolean) as string[]
+    orderContext?.setProductId(filters);
+  }, []);
+
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setOrderPerson({ ...orderPerson, [name]: value });
+  }
+
+  function handleAddressChange(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setOrderAddress({ ...orderAddress, [name]: value });
+  }
 
   return (
     <section className="container w-[1280px] block mx-auto">
@@ -43,12 +61,14 @@ export default function Page() {
         <div className={"divider mt-[30px]"} />
       </div>
       <div>
-        <PayList filter={filter}/>
-        <div className={'border border-black mt-[100px]'}/>
-        <OrderList orderPerson={orderPerson} setOrderPerson={setOrderPerson} />
+        <PayList filter={filter} />
+        <div className={"border border-black mt-[100px]"} />
+        <OrderList handleChange={handleChange} />
+        <div className={"border border-1 border-black mt-[100px]"} />
+        <OrderAddress handleChange={handleAddressChange} />
       </div>
       <div className={"divider mt-[40px]"} />
-      <CheckOut orderPerson={orderPerson} />
+      <CheckOut orderPerson={orderPerson} orderAddress={orderAddress} />
     </section>
   );
 }

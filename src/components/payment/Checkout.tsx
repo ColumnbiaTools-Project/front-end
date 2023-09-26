@@ -3,40 +3,51 @@ import { useAsync } from "react-use";
 import { loadPaymentWidget, PaymentWidgetInstance } from "@tosspayments/payment-widget-sdk";
 import { nanoid } from "nanoid";
 import { usePaymentContext } from "@/context/PaymentContext";
-import { OrderPersonType } from "@/@types/paymentsType";
 import usePayments from "@/Hooks/usePayments";
-import getQueryClient from "@/app/getQueryClient";
-import { uid } from "@/Constants/Constant";
-import { addOrUpdateToPayment } from "@/services/firebase/payments";
-import { useQueryClient } from "@tanstack/react-query";
+import dayjs from "dayjs";
+import { UpdateOrderPersonType } from "@/@types/paymentsType";
 
 const clientKey = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY || "";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
 
 type Props = {
-  orderPerson: OrderPersonType,
+  orderPerson: OrderPersonInputType,
+  orderAddress: OrderAddressType
 }
 
-export default function CheckOut({ orderPerson }: Props) {
-  // const queryClient = getQueryClient();
+export default function CheckOut({ orderPerson, orderAddress }: Props) {
   const paymentContext = usePaymentContext();
   const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
   const paymentMethodsWidgetRef = useRef<ReturnType<PaymentWidgetInstance["renderPaymentMethods"]> | null>(null);
   const { addOrUpdatePayment } = usePayments();
   const [price, setPrice] = useState(0);
-  // const title = paymentContext?.title;
+  const address = paymentContext?.address;
+  const zipCode = paymentContext?.zipCode;
   const totalPrice = paymentContext?.totalPrice;
   const orderId = nanoid(10);
   const productId = paymentContext?.productId;
+  const payDate = dayjs().format("YYYY-MM-DD");
 
-  const updateOrderPerson = useMemo(() => ({
-    ...orderPerson,
-    // title: title,
-    totalPrice: totalPrice,
+  const updateOrderPerson: UpdateOrderPersonType = useMemo(() => ({
+    orderPerson: {
+      orderName: orderPerson?.orderName,
+      productName: orderPerson?.productName,
+      orderEmail: orderPerson?.orderEmail,
+      orderPhone: orderPerson?.orderPhone
+    },
+    orderAddress: {
+      deliveryName: orderAddress?.deliveryName,
+      detailAddress: orderAddress?.detailAddress,
+      phone: orderAddress?.phone,
+      message: orderAddress?.message
+    },
+    address: address || "", // 기본값 설정
+    zipCode: zipCode || "", // 기본값 설정
+    payDate: payDate,
+    totalPrice: totalPrice || 0, // 기본값 설정
     orderId: orderId,
-    productId: productId
-  }), [orderPerson,  totalPrice, orderId, productId]);
-
+    productId: productId || [] // 기본값 설정
+  }), [orderPerson, orderAddress, address, zipCode, totalPrice, orderId, productId]);
 
   useEffect(() => {
     if (totalPrice) {
@@ -75,6 +86,7 @@ export default function CheckOut({ orderPerson }: Props) {
   async function handleClick() {
     const paymentWidget = paymentWidgetRef.current;
     try {
+      addOrUpdatePayment.mutate(updateOrderPerson)
       await paymentWidget?.requestPayment({
         orderId: orderId,
         orderName: orderPerson.productName,
@@ -82,8 +94,6 @@ export default function CheckOut({ orderPerson }: Props) {
         customerEmail: orderPerson.orderEmail,
         successUrl: `${window.location.origin}/cart/payments/complete`,
         failUrl: `${window.location.origin}/fail`
-      }).then(() => {
-        addOrUpdatePayment.mutate(updateOrderPerson);
       });
     } catch (error) {
       console.error(error);

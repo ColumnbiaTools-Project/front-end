@@ -10,6 +10,7 @@ declare interface CartProduct {
   category: string;
   quantity:number;
 }
+
 declare interface Payment {
   version: string,
   paymentKey: string,
