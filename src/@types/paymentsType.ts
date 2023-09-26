@@ -1,6 +1,12 @@
 'use client'
 import { Dispatch, SetStateAction } from "react";
 
+declare global {
+  interface Window {
+    daum: any; // 여기에 사용하는 Daum 우편번호 서비스의 타입을 정확하게 명시하세요.
+  }
+}
+
 export interface PaymentContextType2 {
   title: string;
   orderId:string;
@@ -56,18 +62,17 @@ declare type PaymentStore = {
   setTotalPrice: (totalPrice: number) => void;
 };
 export type PaymentContextType = {
-  title: string;
   productId: string[];
   totalPrice: number;
   updateOrderPerson: OrderPersonType | undefined;
   setUpdateOrderPerson: Dispatch<SetStateAction<OrderPersonType|undefined>>;
   setTotalPrice:Dispatch<SetStateAction<number>>;
-  setTitle:Dispatch<SetStateAction<string>>;
   setProductId:Dispatch<SetStateAction<Array<string>>>;
 }
 export type OrderPersonType = {
   title?:string,
   orderId?: string,
+  productName: string,
   productId?: string[];
   totalPrice?: number;
   orderName: string;
