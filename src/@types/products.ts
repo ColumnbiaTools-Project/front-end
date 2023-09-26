@@ -4,12 +4,12 @@ declare interface Product {
   id?: string;
   title: string;
   price: number;
-  image?: string[];
+  images?: string[];
   description: string;
   category: string;
-  feature?: string[];
-  youtubeURL?: string[];
-  recommand?: RecommandType<string>;
+  features?: string[];
+  youtubeURLs?: string[];
+  recommend?: RecommandType<string>;
 }
 
 declare type RecommandType<T> = [...T[]];

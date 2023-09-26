@@ -9,7 +9,7 @@ import Chip from "@mui/material/Chip";
 
 export default function AddProducts() {
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(250000);
   const [description, setDescription] = useState(
     "Lorem ipsum dolor sit amet consectetur. Amet mi sollicitudin netus arcu. Pharetra tristique pharetra lorem etiam nulla suspendisse nunc cras. Adipiscing metus pulvinar interdum Lorem ipsum dolor sit amet consectetur. Amet mi sollicitudin netus arcu. ",
   );
@@ -22,10 +22,14 @@ export default function AddProducts() {
   ]);
   const [youtubeURLs, setYoutubeURLs] = useState([""]);
   const [recommendations, setRecommendations] = useState([""]);
+  // storage접근 쿼리
   const {
     storageQuery: { data: storage },
   } = useStorage();
   const storageKeysArr = storage ? Object.keys(storage) : [];
+
+  // product add Product쿼리
+  const { addProduct } = useProduct();
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -54,8 +58,15 @@ export default function AddProducts() {
     setCategory(e.target.value);
   };
 
-  const onChangeFeature = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFeatures([e.target.value]);
+  const onChangeFeature1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let updatedFeatures = [...features];
+    updatedFeatures[0] = e.target.value;
+    setFeatures(updatedFeatures);
+  };
+  const onChangeFeature2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let updatedFeatures = [...features];
+    updatedFeatures[1] = e.target.value;
+    setFeatures(updatedFeatures);
   };
 
   const onChangeRecommendation = (
@@ -86,7 +97,7 @@ export default function AddProducts() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({
+    addProduct.mutate({
       title,
       price,
       description,
@@ -94,7 +105,7 @@ export default function AddProducts() {
       category,
       features,
       youtubeURLs,
-      recommendations,
+      recommend: recommendations,
     });
   };
 
@@ -206,7 +217,13 @@ export default function AddProducts() {
             className="input input-bordered"
             type="text"
             value={features[0]}
-            onChange={onChangeFeature}
+            onChange={onChangeFeature1}
+          />
+          <input
+            className="input input-bordered"
+            type="text"
+            value={features[1]}
+            onChange={onChangeFeature2}
           />
           <button className="btn bg-green-200" type="submit">
             제품 추가하기

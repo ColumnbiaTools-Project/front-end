@@ -17,17 +17,20 @@ export default function useProduct() {
     staleTime: 10 * 60 * 10,
   });
 
-  const addProduct = useMutation(
-    ({ product }: { product: Product }) => addNewProduct(product),
-    {
-      onSuccess: () => queryClient.refetchQueries(["products"]),
+  const addProduct = useMutation((product: Product) => addNewProduct(product), {
+    onSuccess: () => {
+      queryClient.refetchQueries(["products"]);
+      alert("추가되었습니다.");
     },
-  );
+  });
 
   const updateProduct = useMutation(
     ({ product }: { product: Product }) => addOrUpdateToProduct(product),
     {
-      onSuccess: () => queryClient.refetchQueries(["products"]),
+      onSuccess: () => {
+        queryClient.refetchQueries(["products"]);
+        alert("수정되었습니다.");
+      },
     },
   );
 
