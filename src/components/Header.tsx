@@ -18,7 +18,7 @@ export default function Header() {
         <Link href="/login" className="mx-3">
           <FiUser className="w-8 h-8 text-white"/>
         </Link>
-        <Link href="/bucket" className="mx-3">
+        <Link href="/cart" className="mx-3">
           <PiShoppingCartSimpleBold className="w-8 h-8 text-white"/>
         </Link>
       </div>

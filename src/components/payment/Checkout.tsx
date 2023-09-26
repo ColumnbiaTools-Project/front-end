@@ -24,18 +24,19 @@ export default function CheckOut({ orderPerson }: Props) {
   const paymentMethodsWidgetRef = useRef<ReturnType<PaymentWidgetInstance["renderPaymentMethods"]> | null>(null);
   const { addOrUpdatePayment } = usePayments();
   const [price, setPrice] = useState(0);
-  const title = paymentContext?.title;
+  // const title = paymentContext?.title;
   const totalPrice = paymentContext?.totalPrice;
   const orderId = nanoid(10);
   const productId = paymentContext?.productId;
 
   const updateOrderPerson = useMemo(() => ({
     ...orderPerson,
-    title: title,
+    // title: title,
     totalPrice: totalPrice,
     orderId: orderId,
-    productId: productId,
-  }), [orderPerson, title, totalPrice, orderId, productId]);
+    productId: productId
+  }), [orderPerson,  totalPrice, orderId, productId]);
+
 
   useEffect(() => {
     if (totalPrice) {
@@ -76,55 +77,45 @@ export default function CheckOut({ orderPerson }: Props) {
     try {
       await paymentWidget?.requestPayment({
         orderId: orderId,
-        orderName: orderPerson.orderName,
-        customerName: orderPerson.deliveryName,
+        orderName: orderPerson.productName,
+        customerName: orderPerson.orderName,
         customerEmail: orderPerson.orderEmail,
         successUrl: `${window.location.origin}/cart/payments/complete`,
         failUrl: `${window.location.origin}/fail`
-      }).then(()=> {
+      }).then(() => {
         addOrUpdatePayment.mutate(updateOrderPerson);
-      })
+      });
     } catch (error) {
       console.error(error);
     }
   }
-  console.log(updateOrderPerson);
+
   return (
     <>
-      <div>
+      <div >
         <main className={"flex flex-col justify-center items-center"}>
-          <h1>주문서</h1>
           <div id="payment-widget" style={{ width: "100%" }} />
           <div id="agreement" style={{ width: "100%" }} />
-          <button onClick={handleClick}>결제하기</button>
         </main>
+        <div className={'divider mt-[50px]'}/>
+        <div className={'mt-[40px]'}>
+          <span className={'text-[24px]'}>결재 전 확인사항</span>
+          <div className={'mt-[40px]'}>
+            <li className={'pb-2'}>고객의 단순한 변심으로 교환, 반품 및 환불을 요구할 때 수반되는 배송비는 고객님께서 부담하셔야합니다.</li>
+            <li>상품을 개봉했거나 설치한 후에는 상품의 재판매가 불가능하므로 고객님의 변심에 대한 교환, 반품이 불가능함을 양지해 주시기 바랍니다</li>
+          </div>
+        </div>
+        <div className={'divider mt-[40px]'}/>
+        <div className={'flex justify-between items-center'}>
+          <p className={'text-[24px] font-bold'}>총 결재금액</p>
+          <p className={'text-[36px] font-bold'}>{totalPrice?.toLocaleString('kr-KR')} 원</p>
+        </div>
+        <div className={'mt-[100px] mb-[200px] flex justify-center items-center'}>
+          <button
+            className={'w-[444px] p-[23px] bg-black text-white text-[24px] flex justify-center items-center'}
+            onClick={handleClick}>결제하기</button>
+        </div>
       </div>
     </>
   );
 }
-
-/*
-addOrUpdatePayment.mutate({
-  title: title,
-  totalPrice: totalPrice,
-  orderId: orderId,
-  productId: productId,
-  orderName: orderPerson.orderName,
-  orderEmail: orderPerson.orderEmail,
-  orderTime: orderPerson.orderTime,
-  orderPhone: orderPerson.orderPhone,
-  deliveryName: orderPerson.deliveryName,
-  zipCode: orderPerson.zipCode,
-  address: orderPerson.address,
-  detailAddress: orderPerson.detailAddress,
-  phone: orderPerson.phone,
-  message: orderPerson.message
-}, {
-  onSuccess: () => {
-    queryClient.invalidateQueries(["payments", uid]);
-  },
-  onError: () => {
-    queryClient.invalidateQueries(["payments", uid]);
-    console.log("order 정보 수정에 실패하였습니다.");
-  }
-});*/

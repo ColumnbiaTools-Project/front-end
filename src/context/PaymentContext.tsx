@@ -14,12 +14,10 @@ export default function PaymentContextProvider({ children }: { children: ReactNo
     <PaymentContext.Provider value={
       {
         productId,
-        title,
         totalPrice,
         updateOrderPerson,
         setUpdateOrderPerson,
         setProductId,
-        setTitle,
         setTotalPrice,
       }}>
       {children}
