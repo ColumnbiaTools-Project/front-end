@@ -1,0 +1,9 @@
+.swiper-button-prev,
+.swiper-button-next {
+  @apply text-black;
+}
+
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  @apply hidden;
+}

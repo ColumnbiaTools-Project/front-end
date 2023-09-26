@@ -7,7 +7,7 @@ import { FiUser } from 'react-icons/fi';
 export default function Header() {
   return (
     <div className="w-full h-[70px] flex items-center gap-4 px-16 z-10 absolute bg-mainPrimary">
-      <Image src="/Columbia_Logo.png" alt="Logo" width={169} height={70}/>
+      <Image src="/main/columbia_tools_logo.svg" alt="Logo" width={169} height={70}/>
       <div className="text-xl flex-1 text-white ml-6">
         <Link href="/" className="mx-6">Home</Link>
         <Link href="/about" className="mx-6">About</Link>
