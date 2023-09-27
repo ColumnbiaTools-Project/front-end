@@ -2,7 +2,7 @@ export const uid = "pelican8118";
 export const DELIVERYMONEY = 0;
 
 export const ProductCategory = [
-  "All",
+  "all",
   "The Tool Sets",
   "Tool Cases",
   "Tomahawk Smoothing Blades",
@@ -11,14 +11,14 @@ export const ProductCategory = [
   "Finishing Boxes",
   "Angleheads",
   "Corner Boxes",
-  "Nailpotters",
+  "Nailspotters",
   "Corner Rollers",
   "Corner Flushers",
   "Semi Automatic Taper",
   "Applicators",
   "Compound Tubes",
   "Handles",
-  "Grooved Mub Heads",
+  "Grooved Mud Heads",
   "Sanders",
   "Maintenance Kits",
 ];
