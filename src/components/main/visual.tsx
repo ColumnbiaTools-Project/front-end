@@ -10,7 +10,7 @@ import './swiper.css';
 
 export default function Visual(){
   return(
-    <div className="w-full h-screen text-white">
+  <div className="w-full h-screen text-white">
     <Image src="/main/main-visual1.png" fill alt="Main_Image" className="relative"/>
     <div className="flex flex-col absolute top-[140px] left-[80px] text-left">
       <p className="text-3xl text-black">DRYWALL TOOLS</p>

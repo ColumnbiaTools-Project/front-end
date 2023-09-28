@@ -109,11 +109,4 @@ body {
     border: 1px solid whitegray;
     font-size: 0.875rem;
   }
-  .swiper-button-prev,
-  .swiper-button-next {
-    @apply py-12 px-28 text-black;
-  }
-}
-
-@layer components {
 }
