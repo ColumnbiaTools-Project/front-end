@@ -110,3 +110,33 @@ body {
     font-size: 0.875rem;
   }
 }
+
+/* tailwind css 커스텀 스타일 */
+@layer utilities {
+
+  .clip-circle{
+    clip-path: circle(25.0% at 50% 55%);
+  }
+  .clip-circle-center{
+    clip-path: circle(25.0% at 50% 50%);
+  }
+  .clip-none{
+    clip-path: circle(100.0% at 50% 55%);
+  }
+
+}
+
+/* data-aos 커스텀 */
+[data-aos="1979-anim"] {
+  @apply clip-circle transition-all;
+  &.aos-animate {
+    @apply clip-none fixed top-0;
+  }
+}
+
+[data-aos="example-anim2"] {
+  @apply bg-red-600 transition-all;
+  &.aos-animate {
+    @apply bg-green-600;
+  }
+}

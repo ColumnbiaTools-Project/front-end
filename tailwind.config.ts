@@ -19,7 +19,9 @@ const config: Config = {
         whitegray: "#d9d9d9",
         darkgray: "#888",
       },
-      fontFamily: {},
+      fontFamily: {
+        
+      },
       height: {
         header: "80px",
         footer: "400px",
