@@ -1,5 +1,5 @@
 import { getProduct } from "@/services/firebase/product";
-import EachProduct from "@/components/product/EachProduct";
+import ProductList from "@/components/product/ProductList";
 
 export default async function page({
   params,
@@ -19,7 +19,7 @@ export default async function page({
           <li className="font-semibold">{category}</li>
         </ul>
       </div>
-      <EachProduct
+      <ProductList
         products={category === "all" ? products : filteredProducts}
       />
     </div>

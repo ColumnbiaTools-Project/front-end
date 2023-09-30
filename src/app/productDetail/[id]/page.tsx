@@ -1,6 +1,7 @@
 import DetailHeader from "@/components/product/DetailHeader";
 import DetailContent from "@/components/product/DetailContent";
 import { getProduct, getDetailProduct } from "@/services/firebase/product";
+import CartModal from "@/components/product/CartModal";
 
 export default async function page({ params }: { params: { id: string } }) {
   //이 구조를 변경하려면 DB구조를 바꿔야함 ㅠㅠ 일단 보류 // 관리자 수정할 때 카테고리와 일치하는 제품의 id 배열을 넣어줘야함.
@@ -20,8 +21,8 @@ export default async function page({ params }: { params: { id: string } }) {
       </header>
       <div>
         <DetailContent product={thisProduct} />
-        {/* <Recommend recommends={thisProduct.recommend}/> */}
       </div>
+      <CartModal />
     </section>
   );
 }
