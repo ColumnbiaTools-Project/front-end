@@ -1,6 +1,9 @@
 import CarouselContainer from "@/components/product/CarouselContainer";
 import QuantityButton from "@/components/product/QuantityButton";
-import Image from "next/image";
+import Recommend from "@/components/product/Recommend";
+import VideoPlayer from "@/components/product/VideoPlayer";
+import CartBtn from "@/components/product/CartBtn";
+import QuickPurchaseBtn from "@/components/product/QuickPurchaseBtn";
 
 interface Props {
   product: Product;
@@ -35,18 +38,19 @@ export default function DetailContent({ product }: Props) {
             <p className="text-4xl">{product.price.toLocaleString()} won</p>
           </div>
           <div className="flex justify-center items-center gap-[18px]">
-            <button className="w-20 h-20 border border-whitegray flex justify-center items-center">
-              <Image
-                src="/images/shopping-bag.png"
-                width={40}
-                height={40}
-                alt="shopping-bag"
-              />
-            </button>
-            <button className="btn_medium_1">구매하기</button>
+            <CartBtn product={product} />
+            <QuickPurchaseBtn product={product} />
           </div>
         </div>
       </div>
+      <div className="my-[200px] w-full h-[720px] bg-black flex justify-center items-center">
+        {product.youtubeURLs && <VideoPlayer video={product.youtubeURLs[0]} />}
+      </div>
+      {product.recommend && (
+        <div className="w-full flex justify-center items-center ">
+          <Recommend recommends={product.recommend} />
+        </div>
+      )}
     </div>
   );
 }
