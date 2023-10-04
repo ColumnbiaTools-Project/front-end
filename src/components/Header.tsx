@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import useLogOut from "@/Hooks/useLogOut";
+import useLogOut from "@/hooks/useLogOut";
 import { FiLogOut } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
