@@ -7,9 +7,6 @@ import useCart from "@/Hooks/useCart";
 import OrderAddress from "@/components/payment/OrderAddress";
 import { usePaymentContext } from "@/context/PaymentContext";
 
-//productId 입력
-
-
 export default function Page() {
   const orderContext = usePaymentContext();
   const [orderPerson, setOrderPerson] = useState<OrderPersonInputType>({
