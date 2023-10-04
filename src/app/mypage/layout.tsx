@@ -1,3 +1,4 @@
+"use client";
 import SideBar from "@/components/mypage/SideBar";
 import OrderProgress from "@/components/mypage/OrderProgress";
 import { auth } from "@/services/firebase/config";
@@ -9,8 +10,7 @@ export default function MyPageLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const user = auth.currentUser;
-  console.log("user", user);
+  console.log(auth);
 
   return (
     <section className="w-[1280px] mx-auto mb-[200px]">

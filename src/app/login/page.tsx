@@ -26,6 +26,14 @@ export default function Login() {
   const login = async (email: string, password: string) => {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
+      // After successful login, send a POST request to the server to create a session cookie
+      const idToken = await user.getIdToken();
+      await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      });
       router.push("/");
     } catch (error: unknown) {
       if (error instanceof Error) {
