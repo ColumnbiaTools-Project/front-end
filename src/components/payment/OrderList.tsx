@@ -14,8 +14,6 @@ type Props = {
   selectEmail: string;
 }
 
-// orderPerson에 이메일을 넣어 줄때 두개 값을 하나로 만들어 넣어준다
-
 export default function OrderList({ handleChange, setSelectEmail, setEmail, selectEmail}: Props) {
 
   return (
@@ -55,20 +53,6 @@ export default function OrderList({ handleChange, setSelectEmail, setEmail, sele
                 type="text" id="orderEmail"
                 value={selectEmail}
               />
-              {/*<select
-                name="selectEmail"
-                onChange={handleSelect}
-                className="w-[20%] text-[20px] px-2 border-b-2 border-black"
-                id="selectEmail"
-              >
-                <option value={"직접입력"}>직접 입력</option>
-                <option value="naver.com">네이버</option>
-                <option value="daum.net">다음</option>
-                <option value="google.com">구글</option>
-                <option value="nate.com">네이트</option>
-                <option value="hotmail.com">핫메일</option>
-                <option value="hanmail.net">한메일</option>
-              </select>*/}
               <select
                 onChange={event => {
                   setSelectEmail(event.target.value);

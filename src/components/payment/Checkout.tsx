@@ -28,6 +28,8 @@ export default function CheckOut({ orderPerson, orderAddress }: Props) {
   const productId = paymentContext?.productId;
   const payDate = dayjs().format("YYYY-MM-DD");
 
+
+
   const updateOrderPerson: UpdateOrderPersonType = useMemo(() => ({
     orderPerson: {
       orderName: orderPerson?.orderName,
@@ -48,6 +50,8 @@ export default function CheckOut({ orderPerson, orderAddress }: Props) {
     orderId: orderId,
     productId: productId || [] // 기본값 설정
   }), [orderPerson, orderAddress, address, zipCode, totalPrice, orderId, productId]);
+
+  console.log(updateOrderPerson);
 
   useEffect(() => {
     if (totalPrice) {
