@@ -21,7 +21,7 @@ export default function CartBtn({ product }: Props) {
         title: product.title,
         price: product.price,
         color: "black",
-        id: "2nd",
+        id: product.id!,
         description: product.description,
         image: product.images[0],
         checked: false,
