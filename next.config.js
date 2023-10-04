@@ -3,7 +3,7 @@
 require("dotenv").config();
 const nextConfig = {
   images:{
-    domains: ['res.cloudinary.com',]
+    domains: ['res.cloudinary.com','firebasestorage.googleapis.com']
   },
   publicRuntimeConfig: {
     NEXT_PUBLIC_TOSS_CLIENT_KEY:process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY,
