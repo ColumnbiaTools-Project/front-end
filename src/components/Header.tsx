@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { HiSearch } from "react-icons/hi";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
-import { FiUser } from "react-icons/fi";
+import { FiUser, FiLogIn } from "react-icons/fi";
+import LoginOrMypage from "@/components/LoginOrMypage";
 
 export default function Header() {
   return (
@@ -23,9 +24,7 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex">
-        <Link href="/login" className="mx-3">
-          <FiUser className="w-8 h-8 text-white" />
-        </Link>
+        <LoginOrMypage />
         <Link href="/cart" className="mx-3">
           <PiShoppingCartSimpleBold className="w-8 h-8 text-white" />
         </Link>
