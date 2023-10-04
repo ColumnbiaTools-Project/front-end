@@ -1,6 +1,5 @@
 import axios from "axios";
 import { GetServerSidePropsContext } from "next";
-
 import AddPayment from "@/components/payment/AddPayment";
 import SuccessButton from "@/components/payment/SuccessButton";
 import dayjs from "dayjs";
@@ -11,8 +10,6 @@ interface Payment {
   paymentKey: string;
   amount: number;
 }
-
-// 마무리되면 cart에서  data를 삭제한다. check 된 상품
 
 export default function SuccessPage(payment: any) {
   const { orderId, paymentKey, paymentType, } = payment.searchParams;

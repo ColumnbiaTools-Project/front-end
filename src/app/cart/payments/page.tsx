@@ -8,10 +8,12 @@ import OrderAddress from "@/components/payment/OrderAddress";
 import { usePaymentContext } from "@/context/PaymentContext";
 
 export default function Page() {
+  const [email, setEmail] = useState("");
+  const [selectEmail, setSelectEmail] = useState("");
   const orderContext = usePaymentContext();
   const [orderPerson, setOrderPerson] = useState<OrderPersonInputType>({
     orderName: "",
-    productName:  "",
+    productName: "",
     orderEmail: "",
     orderPhone: ""
   });
@@ -28,6 +30,8 @@ export default function Page() {
     return null;
   }
 
+
+
   useEffect(() => {
     if (filter.length > 1) {
       const count = filter.length - 1;
@@ -36,9 +40,12 @@ export default function Page() {
       setOrderPerson({ ...orderPerson, productName: filter[0]?.title });
     }
     //productId입력한다. filter(Boolean)을 사용하여 falsy 값 undefined, null ,0 ,""등을 제거한다.
-    const filters = filter.map(item => (item.id)).filter(Boolean) as string[]
+    const filters = filter.map(item => (item.id)).filter(Boolean) as string[];
     orderContext?.setProductId(filters);
+    // const Email = `${email}@${selectEmail}`;
+    // setOrderPerson({ ...orderPerson, orderEmail: Email });
   }, []);
+
 
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -51,6 +58,8 @@ export default function Page() {
     setOrderAddress({ ...orderAddress, [name]: value });
   }
 
+
+
   return (
     <section className="container w-[1280px] block mx-auto">
       <div>
@@ -60,7 +69,8 @@ export default function Page() {
       <div>
         <PayList filter={filter} />
         <div className={"border border-black mt-[100px]"} />
-        <OrderList handleChange={handleChange} />
+        <OrderList handleChange={handleChange} setEmail={setEmail} setSelectEmail={setSelectEmail}
+                   selectEmail={selectEmail} />
         <div className={"border border-1 border-black mt-[100px]"} />
         <OrderAddress handleChange={handleAddressChange} />
       </div>

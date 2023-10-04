@@ -1,7 +1,8 @@
 "use client";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import SignUpFormState from "@/@types/signUpFormState";
-import useSignUpForm from "@/hooks/useSignUpForm";
+import useSignUpForm from "@/Hooks/useSignUpForm";
+
 
 export default function SignUp() {
   // 각 field의 값을 Form 객체로 관리
@@ -44,6 +45,7 @@ export default function SignUp() {
         <p className="m-[50px_0_60px] leading-[30px] text-[20px] text-neutral-800">
           아이디(E-mail)
         </p>
+
         <div className="flex">
           <input
             type="text"
