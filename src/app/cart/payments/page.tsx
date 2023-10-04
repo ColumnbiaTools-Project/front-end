@@ -36,7 +36,7 @@ export default function Page() {
       setOrderPerson({ ...orderPerson, productName: filter[0]?.title });
     }
     //productId입력한다. filter(Boolean)을 사용하여 falsy 값 undefined, null ,0 ,""등을 제거한다.
-    const filters = filter.map(item => (item.checked && item.id)).filter(Boolean) as string[]
+    const filters = filter.map(item => (item.id)).filter(Boolean) as string[]
     orderContext?.setProductId(filters);
   }, []);
 
