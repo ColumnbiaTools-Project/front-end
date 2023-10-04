@@ -6,7 +6,13 @@ const storage = getStorage(firebase_app);
 export const productRef = ref(storage, "상품");
 
 export const getDownloadUrl = async (path: string) => {
-  return await getDownloadURL(ref(storage, path));
+  try {
+    const fileRef = ref(storage, path);
+    const url = await getDownloadURL(fileRef);
+    return url;
+  } catch (e) {
+    return null;
+  }
 };
 
 export async function getAllUrls(

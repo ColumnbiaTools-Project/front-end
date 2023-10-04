@@ -40,8 +40,6 @@ export default function PeriodSelector() {
 
   const handleSubmitPeriod = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("inputStartDate", inputStartDate);
-    console.log("inputEndDate", inputEndDate);
     if (!inputStartDate || !inputEndDate) return;
     setStartDate(inputStartDate);
     setEndDate(inputEndDate);

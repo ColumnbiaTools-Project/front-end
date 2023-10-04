@@ -35,7 +35,13 @@ export default function OrderItem({ order }: OrderItemProps) {
         </div>
         <div className="w-1/3 flex justify-end items-center">
           {order.status === "배송중" && (
-            <button className="btn_tiny">배송조회</button>
+            <a
+              className="btn_tiny"
+              href={`https://tracker.delivery/#/${order.deliveryCompany}/${order.deliveryNumber}`}
+              target="_blank"
+            >
+              배송조회
+            </a>
           )}
         </div>
       </div>

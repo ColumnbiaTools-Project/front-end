@@ -4,7 +4,7 @@ export default function SideBar() {
   return (
     <div className="flex flex-col gap-y-10 w-44">
       <div className="mb-3">
-        <Link href="/cart" className="font-bold">
+        <Link href="/bucket" className="font-bold">
           장바구니
         </Link>
       </div>
@@ -17,10 +17,7 @@ export default function SideBar() {
       <div className="mb-3 flex flex-col">
         <h3 className="font-bold">오프라인 교육(준비중)</h3>
         <Link href="" className="text-sm hover:underline">
-          예약 신청
-        </Link>
-        <Link href="" className="text-sm hover:underline">
-          예약 확인 / 변경 / 취소
+          예약 확인 / 취소
         </Link>
       </div>
       <div className="mb-3">

@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,5 +15,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebase_app = initializeApp(firebaseConfig);
+
+// Add Auth SDK
+export const auth = getAuth(firebase_app);
 
 export default firebase_app;
