@@ -90,13 +90,7 @@ export default function Login() {
         <nav className="mb-[200px] w-[700px] h-[32px] text-center">
           <Link
             href="/"
-            className="mr-[59px] text-center leading-[30px] text-[20px] text-neutral-500 after:content-[''] after:inline-block after:relative after:ml-[59px] after:top-[7px] after:w-[2px] after:h-[30px] after:text-center after:bg-zinc-300"
-          >
-            아이디 찾기
-          </Link>
-          <Link
-            href="/"
-            className="mr-[59px] text-center leading-[30px] text-[20px] text-neutral-500 after:content-[''] after:inline-block after:relative after:ml-[59px] after:top-[7px] after:w-[2px] after:h-[30px] after:bg-zinc-300 "
+            className="mr-[80px] text-center leading-[30px] text-[20px] text-neutral-500 after:content-[''] after:inline-block after:relative after:ml-[80px] after:top-[7px] after:w-[2px] after:h-[30px] after:bg-zinc-300 "
           >
             비밀번호 찾기
           </Link>
