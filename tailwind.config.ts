@@ -18,8 +18,11 @@ const config: Config = {
         black: "#222",
         whitegray: "#d9d9d9",
         darkgray: "#888",
+        testRed: "#FF0000"
       },
-      fontFamily: {},
+      fontFamily: {
+        
+      },
       height: {
         header: "80px",
         footer: "400px",
