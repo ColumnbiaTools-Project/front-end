@@ -1,7 +1,7 @@
 "use client";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import SignUpFormState from "@/@types/signUpFormState";
-import useSignUpForm from "@/hooks/useSignUpForm";
+import useSignUpForm from "@/Hooks/useSignUpForm";
 
 export default function SignUp() {
   // 각 field의 값을 Form 객체로 관리
@@ -19,8 +19,12 @@ export default function SignUp() {
     isFormValid,
     passwordError,
     confirmPasswordError,
+    showPassword,
+    showConfirmPassword,
     handleFieldChange,
     handleInputChange,
+    togglePasswordVisibility,
+    toggleConfirmPasswordVisibility,
     handleSubmit,
     handleSignUp,
   } = useSignUpForm(initialFormState);
@@ -91,14 +95,24 @@ export default function SignUp() {
           비밀번호
         </p>
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           placeholder="8~15자 이내의 영문, 숫자 및 특수문자 조합"
           value={formState.password}
           onChange={handleInputChange}
           className="w-[700px] border-b-[3px] border-neutral-300 font-medium leading-7 focus:outline-none"
         />
-        <BsEye className="relative top-[-30px] right-[-660px] w-[25px] h-[24px] text-gray-300" />
+        {showPassword ? (
+          <BsEyeSlash
+            onClick={togglePasswordVisibility}
+            className="relative top-[-30px] right-[-660px] w-[25px] h-[24px] text-gray-300"
+          />
+        ) : (
+          <BsEye
+            onClick={togglePasswordVisibility}
+            className="relative top-[-30px] right-[-660px] w-[25px] h-[24px] text-gray-300"
+          />
+        )}
         {passwordError && (
           <div className="line-[21.8px] text-[16px] text-red-500">
             {passwordError}
@@ -108,14 +122,24 @@ export default function SignUp() {
           비밀번호 확인
         </p>
         <input
-          type="password"
+          type={showConfirmPassword ? "text" : "password"}
           name="confirmPassword"
           placeholder="8~15자 이내의 영문, 숫자 및 특수문자 조합"
           value={formState.confirmPassword}
           onChange={handleInputChange}
           className="w-[700px] border-b-[3px] border-neutral-300 font-medium leading-7 focus:outline-none"
         />
-        <BsEyeSlash className="relative top-[-30px] right-[-660px] w-[25px] h-[24px] text-gray-300" />
+        {showConfirmPassword ? (
+          <BsEyeSlash
+            onClick={toggleConfirmPasswordVisibility}
+            className="relative top-[-30px] right-[-660px] w-[25px] h-[24px] text-gray-300"
+          />
+        ) : (
+          <BsEye
+            onClick={toggleConfirmPasswordVisibility}
+            className="relative top-[-30px] right-[-660px] w-[25px] h-[24px] text-gray-300"
+          />
+        )}
         {confirmPasswordError && (
           <div className="line-[21.8px] text-[16px] text-red-500">
             {confirmPasswordError}
