@@ -33,8 +33,12 @@ export default function Login() {
         headers: {
           Authorization: `Bearer ${idToken}`,
         },
+      }).then(response => {
+        if (response.status === 200) {
+          console.log("로그인 성공");
+          router.push("/");
+        }
       });
-      router.push("/");
     } catch (error: unknown) {
       if (error instanceof Error) {
         const errorMessage = error.message;

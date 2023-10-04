@@ -1,17 +1,11 @@
-"use client";
 import SideBar from "@/components/mypage/SideBar";
 import OrderProgress from "@/components/mypage/OrderProgress";
-import { auth } from "@/services/firebase/config";
-import { redirect } from "next/dist/server/api-utils";
-import { NextApiResponse } from "next";
 
 export default function MyPageLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  console.log(auth);
-
   return (
     <section className="w-[1280px] mx-auto mb-[200px]">
       <header className="border-b-2 w-full border-whitegray h-[304px] mb-24 box-border flex justify-start items-end">

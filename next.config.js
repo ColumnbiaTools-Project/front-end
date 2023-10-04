@@ -11,6 +11,7 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ["firebase-admin"],
+    middleware: true,
   },
 };
 
