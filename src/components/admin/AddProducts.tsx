@@ -45,12 +45,10 @@ export default function AddProducts() {
 
   const onChangeImage = (value: string[]) => {
     setImageKeys(value);
-    console.log(value);
     const urls: string[] = value.map((item: string) => {
       if (storage) return storage[item];
       else return "";
     });
-    console.log(urls);
     setImages(urls);
   };
 
