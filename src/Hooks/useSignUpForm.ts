@@ -13,6 +13,8 @@ export default function useSignUpForm(initialState: SignUpFormState) {
   const [isFormValid, setIsFormValid] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // SignUp Form Data
   const handleFieldChange = (fieldName: string, value: string) => {
@@ -37,6 +39,15 @@ export default function useSignUpForm(initialState: SignUpFormState) {
       formState.confirmPassword.length === 0;
 
     setIsFormValid(!isFormEmpty);
+  };
+
+  // 비밀번호, 비밀번호 확인 Form 확인 toggle
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevShowPassword => !prevShowPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(prevShowConfirmPassword => !prevShowConfirmPassword);
   };
 
   // 가입하기 버튼 클릭 시 Form 제출
@@ -108,8 +119,12 @@ export default function useSignUpForm(initialState: SignUpFormState) {
     isFormValid,
     passwordError,
     confirmPasswordError,
+    showPassword,
+    showConfirmPassword,
     handleFieldChange,
     handleInputChange,
+    togglePasswordVisibility,
+    toggleConfirmPasswordVisibility,
     handleSubmit,
     handleSignUp,
   };

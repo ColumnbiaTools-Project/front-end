@@ -110,3 +110,38 @@ body {
     font-size: 0.875rem;
   }
 }
+
+/* tailwind css 커스텀 스타일 */
+@layer utilities {
+  .clip-circle {
+    clip-path: circle(25% at 50% 55%);
+  }
+  .clip-circle-center {
+    clip-path: circle(25% at 50% 50%);
+  }
+  .clip-none {
+    clip-path: circle(100% at 50% 55%);
+  }
+}
+
+/* data-aos 커스텀 */
+[data-aos="1979-anim"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply clip-none fixed top-0;
+  }
+}
+
+[data-aos="1979-to-left"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply translate-x-[-40px];
+  }
+}
+
+[data-aos="1979-to-up"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply opacity-100 translate-y-0;
+  }
+}
