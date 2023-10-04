@@ -21,10 +21,10 @@ export default function QuickPurchaseBtn({ product }: Props) {
         title: product.title,
         price: product.price,
         color: "black",
-        id: "1st",
+        id: product.id!,
         description: product.description,
         image: product.images[0],
-        checked: true,
+        checked: false,
         category: product.category,
         quantity: quantityQuery.data as number,
       };
