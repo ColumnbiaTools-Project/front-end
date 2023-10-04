@@ -4,7 +4,7 @@ declare interface Product {
   id?: string;
   title: string;
   price: number;
-  images?: string[];
+  images: string[];
   description: string;
   category: string;
   features?: string[];
