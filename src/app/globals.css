@@ -145,3 +145,31 @@ body {
     @apply opacity-100 translate-y-0;
   }
 }
+
+[data-aos="2023-opacity-100"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply opacity-100;
+  }
+}
+
+[data-aos="2023-opacity-0"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply opacity-0;
+  }
+}
+
+[data-aos="2023-to-left"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply translate-x-[-1050px];
+  }
+}
+
+[data-aos="2023-fixed"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply relative top-[1000px];
+  }
+}
