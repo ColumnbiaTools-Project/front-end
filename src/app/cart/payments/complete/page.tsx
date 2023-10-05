@@ -1,5 +1,6 @@
+"use client";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import AddPayment from "@/components/payment/AddPayment";
 import SuccessButton from "@/components/payment/SuccessButton";
 import dayjs from "dayjs";
@@ -12,8 +13,10 @@ interface Payment {
 }
 
 export default function SuccessPage(payment: any) {
-  const router = useRouter();
-  const { orderId, paymentKey, paymentType } = router.query;
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get("orderId");
+  const paymentKey = searchParams.get("paymentKey");
+  const paymentType = searchParams.get("paymentType");
 
   return (
     <>
