@@ -1,12 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -17,11 +11,137 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  .react-datepicker__header {
+    background-color: white;
+    border: none;
+  }
+  .react-datepicker__month-container {
+    padding: 15px;
+  }
+}
+
+@layer base {
+  .btn_large {
+    display: flex;
+    width: 700px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .btn_medium_1 {
+    display: flex;
+    width: 444px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .btn_medium_2_fill {
+    display: flex;
+    width: 350px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .btn_medium_2_unfill {
+    display: flex;
+    width: 350px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 2rem;
+  }
+  .btn_small_fill {
+    display: flex;
+    width: 198px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+  .btn_small_unfill {
+    display: flex;
+    width: 198px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 1.5rem;
+  }
+  .btn_tiny {
+    display: flex;
+    width: 130px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 1rem;
+  }
+  .btn_extra_small {
+    display: flex;
+    width: 70px;
+    height: 33px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: darkgray;
+    border: 1px solid whitegray;
+    font-size: 0.875rem;
+  }
+}
+
+/* tailwind css 커스텀 스타일 */
+@layer utilities {
+  .clip-circle {
+    clip-path: circle(25% at 50% 55%);
+  }
+  .clip-circle-center {
+    clip-path: circle(25% at 50% 50%);
+  }
+  .clip-none {
+    clip-path: circle(100% at 50% 55%);
+  }
+}
+
+/* data-aos 커스텀 */
+[data-aos="1979-anim"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply clip-none fixed top-0;
+  }
+}
+
+[data-aos="1979-to-left"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply translate-x-[-40px];
+  }
+}
+
+[data-aos="1979-to-up"] {
+  @apply transition-all;
+  &.aos-animate {
+    @apply opacity-100 translate-y-0;
+  }
 }
