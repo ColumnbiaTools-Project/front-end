@@ -12,7 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Decode Firebase Admin SDK Key
-        run: echo "COLUMBIA_ADMIN_SECRET_KEY=$(echo "${{ secrets.COLUMBIA_ADMIN_SECRET_KEY }}" | base64 --decode)" >> .env
+        run: |
+          echo "${{ secrets.COLUMBIA_ADMIN_SECRET_KEY }}" | base64 --decode > firebase-adminsdk-key.json
+          echo "COLUMBIA_ADMIN_SECRET_KEY=$(pwd)/firebase-adminsdk-key.json" >> .env
       - name: Generate Environment Variables File for Production
         run: |
           echo "NEXT_PUBLIC_FIREBASE_API_KEY=$NEXT_PUBLIC_FIREBASE_API_KEY" >> .env
