@@ -1,18 +1,11 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import useLogOut from "@/Hooks/useLogOut";
-import { FiLogOut } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
+import LogoutBtn from "./LogoutBtn";
+import LoginOrMypage from "./LoginOrMypage";
 
 export default function Header() {
-  const { handleLogout } = useLogOut();
-
-  const handleLogOutClick = async () => {
-    await handleLogout();
-  };
-
   return (
     <div className="w-full h-[70px] flex items-center gap-4 px-16 z-10 absolute bg-mainPrimary">
       <Image
@@ -36,12 +29,8 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex">
-        <button onClick={handleLogOutClick} className="mx-3">
-          <FiLogOut className="w-8 h-8 text-white" />
-        </button>
-        <Link href="/login" className="mx-3">
-          <FiUser className="w-8 h-8 text-white" />
-        </Link>
+        <LogoutBtn />
+        <LoginOrMypage />
         <Link href="/cart" className="mx-3">
           <PiShoppingCartSimpleBold className="w-8 h-8 text-white" />
         </Link>

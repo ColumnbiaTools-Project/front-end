@@ -1,14 +1,23 @@
 "use client";
 import { useState, useEffect } from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import {
+  useQueryClient,
+  useQuery,
+  useMutation,
+  MutationFunction,
+} from "@tanstack/react-query";
 
 export default function QuantityButton() {
   const [quantity, setQuantity] = useState<number>(1);
 
   const queryClient = useQueryClient();
   const quantityQuery = useQuery(["quantity"], () => quantity);
-  const quantityMutation = useMutation((newQuantity: number) => {
+  const quantityMutation = useMutation<
+    MutationFunction<void, [number]>,
+    unknown,
+    number
+  >((newQuantity: number) => {
     setQuantity(newQuantity);
   });
 
