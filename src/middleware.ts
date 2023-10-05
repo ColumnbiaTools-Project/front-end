@@ -28,6 +28,9 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
     //Return to /login if token is not authorized
     if (responseAPI.status !== 200) {
+      await fetch(`${baseURL}/api/signOut`, {
+        method: "POST",
+      });
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }
