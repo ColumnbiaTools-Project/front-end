@@ -37,10 +37,11 @@ export default function OrderItem({ order }: OrderItemProps) {
           {order.status === "배송중" && (
             <a
               className="btn_tiny"
-              href={`https://tracker.delivery/#/${order.deliveryCompany}/${order.deliveryNumber}`}
+              href={"#"}
+              // href={`https://tracker.delivery/#/${order.deliveryCompany}/${order.deliveryNumber}`}
               target="_blank"
             >
-              배송조회
+              배송조회(준비중)
             </a>
           )}
         </div>
