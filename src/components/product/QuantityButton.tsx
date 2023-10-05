@@ -5,7 +5,7 @@ import {
   useQueryClient,
   useQuery,
   useMutation,
-  MutationFunction,
+  UseMutationResult,
 } from "@tanstack/react-query";
 
 export default function QuantityButton() {
@@ -13,24 +13,25 @@ export default function QuantityButton() {
 
   const queryClient = useQueryClient();
   const quantityQuery = useQuery(["quantity"], () => quantity);
-  const quantityMutation = useMutation<
-    MutationFunction<void, [number]>,
-    unknown,
-    number
-  >((newQuantity: number) => {
-    setQuantity(newQuantity);
-  });
+  const quantityMutation = useMutation<void, unknown, number>(
+    async (newQuantity: number): Promise<void> => {
+      setQuantity(newQuantity);
+    },
+    {
+      mutationKey: ["quantity"],
+    },
+  ) as UseMutationResult<void, unknown, number, unknown>;
 
   useEffect(() => {
     queryClient.setQueryData(["quantity"], quantity);
   }, [quantity, queryClient]);
 
   const handleIncrease = () => {
-    quantityMutation.mutate(quantity + 1);
+    quantityMutation.mutateAsync(quantity + 1);
   };
   const handleDecrease = () => {
     if (quantity <= 1) return;
-    quantityMutation.mutate(quantity - 1);
+    quantityMutation.mutateAsync(quantity - 1);
   };
 
   console.log(quantityQuery.data);
@@ -41,13 +42,13 @@ export default function QuantityButton() {
         className={`w-10 border-r h-full flex justify-center items-center ${
           quantity <= 1 ? "text-whitegray" : ""
         }`}
-        disabled={quantity <= 1 ? true : false}
+        disabled={quantity <= 1}
       >
         <AiOutlineMinus size={20} />
       </button>
       <div className="w-10 text-center align-middle">{quantity}</div>
       <button
-        onClick={() => handleIncrease()}
+        onClick={handleIncrease}
         className="w-10 border-l h-full flex justify-center items-center"
       >
         <AiOutlinePlus size={20} />

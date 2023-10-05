@@ -1,8 +1,8 @@
 "use client";
 import { ProductCategory } from "@/Constants/Constant";
-import useProduct from "@/hooks/useProduct";
+import useProduct from "@/Hooks/useProduct";
 import { useState } from "react";
-import useStorage from "@/hooks/useStorage";
+import useStorage from "@/Hooks/useStorage";
 import AutoComplete from "@mui/material/Autocomplete";
 import { TextField } from "@mui/material";
 import Chip from "@mui/material/Chip";
