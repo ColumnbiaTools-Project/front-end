@@ -24,11 +24,15 @@ export default function LoginContainer() {
   }, []);
 
   const login = async (email: string, password: string) => {
+    const baseURL =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : "https://colbia-dep.vercel.app/";
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       // After successful login, send a POST request to the server to create a session cookie
       const idToken = await user.getIdToken();
-      await fetch("/api/login", {
+      await fetch(`${baseURL}/api/login`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${idToken}`,

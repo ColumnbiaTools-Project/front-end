@@ -5,9 +5,16 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   const session = request.cookies.get("session");
   console.log("session:", session);
 
+  const baseURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://colbia-dep.vercel.app/";
+
   // If the path is /login and a session exists, redirect to home
-  if (request.nextUrl.pathname === "/login" && session) {
-    return NextResponse.redirect("/");
+  if (session) {
+    if (request.nextUrl.pathname === "/login") {
+      return NextResponse.redirect("/");
+    }
   }
 
   //Return to /login if don't have a session
@@ -15,7 +22,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  const responseAPI = await fetch("/api/login", {
+  const responseAPI = await fetch(`${baseURL}/api/login`, {
     headers: {
       Cookie: `session=${session?.value}`,
     },
@@ -23,9 +30,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
   //Return to /login if token is not authorized
   if (responseAPI.status !== 200) {
-    await fetch("/api/signOut", {
-      method: "POST",
-    });
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -34,5 +38,5 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
 //Add your protected routes
 export const config = {
-  matcher: ["/mypage/:path*", "/mypage", "/cart/:path*", "/cart"],
+  matcher: ["/mypage/:path*", "/mypage", "/cart", "/cart/:path*"],
 };
