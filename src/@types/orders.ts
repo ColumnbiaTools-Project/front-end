@@ -9,14 +9,11 @@ declare interface OrderPersonInputType {
   orderName: string;
   productName: string;
   orderEmail: string;
-  orderTime: string;
   orderPhone: string;
 }
 
 declare interface OrderAddressType {
   deliveryName: string;
-  zipCode: string;
-  address: string;
   detailAddress: string;
   phone: string;
   message: string;

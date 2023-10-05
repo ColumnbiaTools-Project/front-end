@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import AddPayment from "@/components/payment/AddPayment";
 import SuccessButton from "@/components/payment/SuccessButton";
 import dayjs from "dayjs";
@@ -31,9 +31,13 @@ export default function SuccessPage(payment: any) {
   );
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+
+
+export async function getServerSideProps(
+  context: GetServerSidePropsContext
+): Promise<GetServerSidePropsResult<{ payment: Payment }>> {
   const {
-    query: { paymentKey, orderId, amount }
+    query: { paymentKey, orderId, amount },
   } = context;
 
   try {
@@ -42,26 +46,27 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       {
         paymentKey,
         orderId,
-        amount
+        amount,
       },
       {
         headers: {
           Authorization: `Basic ${Buffer.from(
             `${process.env.TOSS_PAYMENTS_SECRET_KEY}:`
-          ).toString("base64")}`
-        }
+          ).toString("base64")}`,
+        },
       }
     );
+
     return {
-      props: { payment }
+      props: { payment },
     };
   } catch (err: any) {
     console.error("err", err);
     return {
       redirect: {
         destination: `/fail?code=${err.code}&message=${err.message}`,
-        permanent: false
-      }
+        permanent: false,
+      },
     };
   }
 }
