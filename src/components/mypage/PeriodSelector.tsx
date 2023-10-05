@@ -91,7 +91,7 @@ export default function PeriodSelector() {
             startDate={inputStartDate}
             endDate={inputEndDate}
             locale={ko}
-            customInput={<CustomInput />}
+            customInput={<CustomInput value={new Date()} onClick={() => {}} />}
           ></DatePicker>
         </div>
         <p>~</p>
@@ -110,7 +110,7 @@ export default function PeriodSelector() {
             startDate={inputStartDate}
             endDate={inputEndDate}
             locale={ko}
-            customInput={<CustomInput />}
+            customInput={<CustomInput value={new Date()} onClick={() => {}} />}
           ></DatePicker>
         </div>
       </div>
