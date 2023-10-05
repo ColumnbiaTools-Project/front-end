@@ -1,8 +1,8 @@
 import axios from "axios";
-import { GetServerSidePropsContext } from "next";
-
+import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import AddPayment from "@/components/payment/AddPayment";
 import SuccessButton from "@/components/payment/SuccessButton";
+import dayjs from "dayjs";
 
 interface Payment {
   paymentType: string,
@@ -15,21 +15,29 @@ export default function SuccessPage(payment: any) {
   const { orderId, paymentKey, paymentType, } = payment.searchParams;
 
   return (
-    <section className={'container w-1020 block mx-auto mt-4'}>
-      <div
-        className={"flex flex-col items-center justify-center"}
-      >
-        <h1>결제 성공</h1>
-        <AddPayment orderId={orderId} paymentKey={paymentKey} paymentType={paymentType}  />
-        <SuccessButton />
-      </div>
-    </section>
+    <>
+      <p className={'h-[260px] mx-auto flex justify-center items-end text-[40px] font-bold'}>주문완료</p>
+      <section className={'container w-[1280px] mx-auto mt-[100px]'}>
+          <div className={'flex justify-start items-center'}>
+            <span className={'h-[16px] font-normal'}>{dayjs().format("YYYY-MM-DD HH")} </span>
+          </div>
+        <div className={'border border-b-2px border-black mt-[17px]'} />
+          <div className={'mt-[55px]'}>
+            <AddPayment orderId={orderId} paymentKey={paymentKey} paymentType={paymentType}  />
+            <SuccessButton />
+          </div>
+      </section>
+    </>
   );
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+
+
+export async function getServerSideProps(
+  context: GetServerSidePropsContext
+): Promise<GetServerSidePropsResult<{ payment: Payment }>> {
   const {
-    query: { paymentKey, orderId, amount }
+    query: { paymentKey, orderId, amount },
   } = context;
 
   try {
@@ -38,26 +46,27 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       {
         paymentKey,
         orderId,
-        amount
+        amount,
       },
       {
         headers: {
           Authorization: `Basic ${Buffer.from(
             `${process.env.TOSS_PAYMENTS_SECRET_KEY}:`
-          ).toString("base64")}`
-        }
+          ).toString("base64")}`,
+        },
       }
     );
+
     return {
-      props: { payment }
+      props: { payment },
     };
   } catch (err: any) {
     console.error("err", err);
     return {
       redirect: {
         destination: `/fail?code=${err.code}&message=${err.message}`,
-        permanent: false
-      }
+        permanent: false,
+      },
     };
   }
 }

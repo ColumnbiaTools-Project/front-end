@@ -1,5 +1,6 @@
 "use client";
-import { ChangeEvent, ChangeEventHandler, useRef, useState } from "react";
+import { ChangeEventHandler, useRef, useState } from "react";
+import SignUpFormState from "@/@types/signUpFormState";
 
 const id = "daum-postcode"; // script가 이미 rendering 되어 있는지 확인하기 위한 ID
 const src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
@@ -8,14 +9,12 @@ const INPUTSTYLE = "w-full text-[20px] px-2 border-b-2 border-black";
 
 type Props = {
   handleChange: ChangeEventHandler<HTMLInputElement>;
+  setSelectEmail: (value: string) => void;
+  setEmail:(value: string) => void;
+  selectEmail: string;
 }
 
-export default function OrderList({ handleChange }: Props) {
-  const [data, setData] = useState("");
-
-  const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    setData(e.target.value);
-  };
+export default function OrderList({ handleChange, setSelectEmail, setEmail, selectEmail}: Props) {
 
   return (
     <>
@@ -43,28 +42,29 @@ export default function OrderList({ handleChange }: Props) {
             <div>
               <input
                 name={"orderEmail"}
-                onChange={handleChange}
+                onChange={(event)=>setEmail(event.target.value)}
                 className={"w-[30%] text-[20px] px-2 border-b-2 border-black"}
                 type="text" id="orderEmail" />
               <span className={"text-[20px] ml-[5%]  font-bold"}>@</span>
               <input
                 name={"orderEmail2"}
-                onChange={handleChange}
+                onChange={(event)=>setSelectEmail(event.target.value)}
                 className={"w-[30%] text-[20px] mr-[5%] px-2 border-b-2 border-black"}
                 type="text" id="orderEmail"
-                value={data}
+                value={selectEmail}
               />
               <select
-                name="selectEmail"
-                onChange={handleSelect}
-                className="w-[20%] text-[20px] px-2 border-b-2 border-black"
-                id="selectEmail"
+                onChange={event => {
+                  setSelectEmail(event.target.value);
+                  handleChange;
+                }}
+                className="select w-[20%] focus:outline-none"
               >
-                <option value={"직접입력"}>직접 입력</option>
+                <option value="직접 입력">직접 입력</option>
                 <option value="naver.com">네이버</option>
-                <option value="daum.net">다음</option>
-                <option value="google.com">구글</option>
                 <option value="nate.com">네이트</option>
+                <option value="gmail.com">구 글</option>
+                <option value="daum.net">다음</option>
                 <option value="hotmail.com">핫메일</option>
                 <option value="hanmail.net">한메일</option>
               </select>

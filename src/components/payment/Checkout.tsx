@@ -4,32 +4,52 @@ import { loadPaymentWidget, PaymentWidgetInstance } from "@tosspayments/payment-
 import { nanoid } from "nanoid";
 import { usePaymentContext } from "@/context/PaymentContext";
 import usePayments from "@/Hooks/usePayments";
+import dayjs from "dayjs";
+import { UpdateOrderPersonType } from "@/@types/paymentsType";
 
 const clientKey = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY || "";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
 
 type Props = {
   orderPerson: OrderPersonInputType,
+  orderAddress: OrderAddressType
 }
 
-export default function CheckOut({ orderPerson }: Props) {
-  // const queryClient = getQueryClient();
+export default function CheckOut({ orderPerson, orderAddress }: Props) {
   const paymentContext = usePaymentContext();
   const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
   const paymentMethodsWidgetRef = useRef<ReturnType<PaymentWidgetInstance["renderPaymentMethods"]> | null>(null);
   const { addOrUpdatePayment } = usePayments();
   const [price, setPrice] = useState(0);
+  const address = paymentContext?.address;
+  const zipCode = paymentContext?.zipCode;
   const totalPrice = paymentContext?.totalPrice;
   const orderId = nanoid(10);
   const productId = paymentContext?.productId;
+  const payDate = dayjs().format("YYYY-MM-DD");
 
-  const updateOrderPerson
-    = useMemo(() => ({
-    ...orderPerson,
-    totalPrice: totalPrice,
+
+
+  const updateOrderPerson: UpdateOrderPersonType = useMemo(() => ({
+    orderPerson: {
+      orderName: orderPerson?.orderName,
+      productName: orderPerson?.productName,
+      orderEmail: orderPerson?.orderEmail,
+      orderPhone: orderPerson?.orderPhone
+    },
+    orderAddress: {
+      deliveryName: orderAddress?.deliveryName,
+      detailAddress: orderAddress?.detailAddress,
+      phone: orderAddress?.phone,
+      message: orderAddress?.message
+    },
+    address: address || "", // 기본값 설정
+    zipCode: zipCode || "", // 기본값 설정
+    payDate: payDate,
+    totalPrice: totalPrice || 0, // 기본값 설정
     orderId: orderId,
-    productId: productId
-  }), [orderPerson,  totalPrice, orderId, productId]);
+    productId: productId || [] // 기본값 설정
+  }), [orderPerson, orderAddress, address, zipCode, totalPrice, orderId, productId]);
 
 
   useEffect(() => {
@@ -69,6 +89,7 @@ export default function CheckOut({ orderPerson }: Props) {
   async function handleClick() {
     const paymentWidget = paymentWidgetRef.current;
     try {
+      addOrUpdatePayment.mutate(updateOrderPerson)
       await paymentWidget?.requestPayment({
         orderId: orderId,
         orderName: orderPerson.productName,

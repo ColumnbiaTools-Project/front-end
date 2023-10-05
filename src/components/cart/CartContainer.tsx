@@ -1,13 +1,14 @@
 "use client";
-import useCart from "@/Hooks/useCart";
-import CartItems from "@/components/bucket/cartItems";
-import AllCartDelete from "@/components/bucket/AllcartDelete";
-import AllChoice from "@/components/bucket/AllChoice";
-import TotalPrice from "@/components/bucket/TotalPrice";
+
 import Link from "next/link";
 import AddCart from "@/components/cart/AddCart";
+import useCart from "@/Hooks/useCart";
+import AllChoice from "@/components/cart/AllChoice";
+import CartItems from "@/components/cart/cartItems";
+import AllCartDelete from "@/components/cart/AllcartDelete";
+import TotalPrice from "@/components/cart/TotalPrice";
 
-export default function Page() {
+export default function CartContainer() {
   const {
     cartQuery: { data: cart },
   } = useCart();

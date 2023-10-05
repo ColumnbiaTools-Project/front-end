@@ -3,17 +3,22 @@ import { useMutation, useQuery,} from "@tanstack/react-query";
 import { uid } from "@/Constants/Constant";
 import getQueryClient from "@/app/getQueryClient";
 import { addOrUpdateToPayment, getPayment, removeFromPayment } from "@/services/firebase/payments";
-import { OrderPersonType, Test } from "@/@types/paymentsType";
+import { UpdateOrderPersonType } from "@/@types/paymentsType";
+import dayjs from "dayjs";
+
+// 날짜 조건
+const today = dayjs().format('YYYY-MM-DD');
 
 export default function  usePayments() {
   const queryClient = getQueryClient();
+
   const paymentQuery
-    = useQuery(["payment"], () => getPayment('pelican8118'), {
+    = useQuery(["payment"], () => getPayment(uid), {
     staleTime: 10 * 60,
   });
 
   const addOrUpdatePayment = useMutation(
-    (paymentData: OrderPersonType) => addOrUpdateToPayment(uid, paymentData),
+    (paymentData: UpdateOrderPersonType) => addOrUpdateToPayment(uid, paymentData),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['payments', uid]);

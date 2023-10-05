@@ -1,7 +1,4 @@
-import CalTotalMoney from "@/components/payment/CalTotalMoney";
-import useCart from "@/Hooks/useCart";
 import Image from "next/image";
-import Delivery from "@/components/payment/Delivery";
 import { usePaymentContext } from "@/context/PaymentContext";
 import { DELIVERYMONEY } from "@/Constants/Constant";
 

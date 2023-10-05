@@ -1,4 +1,5 @@
 import { ChangeEventHandler, useRef, useState } from "react";
+import { usePaymentContext } from "@/context/PaymentContext";
 
 type Props = {
   handleChange: ChangeEventHandler<HTMLInputElement>;
@@ -15,8 +16,7 @@ export default function OrderAddress({handleChange }: Props) {
   const [isScriptLoaded, setIsScriptLoaded] = useState<boolean>(false);
   const [roadAddress, setRoadAddress] = useState<string>("");
   const [zipCode, setZipCode] = useState("");
-
-
+  const orderAddressContext = usePaymentContext();
 
   // 주소 검색 스크립트 로딩 함수
   const loadScript = () => {
@@ -29,7 +29,6 @@ export default function OrderAddress({handleChange }: Props) {
     };
     document.body.appendChild(script);
   };
-
   // 버튼 클릭 시 주소 검색 스크립트 로드 또는 주소 검색창 열기
   const handleButtonClick = () => {
     if (!isScriptLoaded) {
@@ -72,7 +71,7 @@ export default function OrderAddress({handleChange }: Props) {
               className={"w-full text-[20px] px-2 border-b-2 border-black"}
               type="text"
               name="zipCode"
-              value={zipCode}
+              value={zipCode ? `${zipCode} ${orderAddressContext?.setZipCode(zipCode) || ""}` : ""}
             />
           </div>
           <div>
@@ -93,7 +92,7 @@ export default function OrderAddress({handleChange }: Props) {
           className={INPUTSTYLE}
           type="text"
           name="address"
-          value={roadAddress}
+          value={roadAddress ? `${roadAddress} ${orderAddressContext?.setAddress(roadAddress) || ""}` : ""}
         />
 
         <label className={LABELSTYLE} htmlFor="detailAddress">
