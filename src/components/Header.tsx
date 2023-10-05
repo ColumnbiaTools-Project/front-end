@@ -24,9 +24,9 @@ export default function Header() {
         <Link href="/product/all" className="mx-6">
           Product
         </Link>
-        <Link href="/education" className="mx-6">
+        {/*<Link href="/education" className="mx-6">
           Education
-        </Link>
+        </Link>*/}
       </div>
       <div className="flex">
         <LogoutBtn />

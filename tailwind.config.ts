@@ -13,6 +13,7 @@ const config: Config = {
           DEFAULT: "#000000",
           white: "#FFFFFF",
         },
+        gold: "#CCB579",
         mainPrimary:"#222222",
         mainGray:"#F5F5F7",
         black: "#222",

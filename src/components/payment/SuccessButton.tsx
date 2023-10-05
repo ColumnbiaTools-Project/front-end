@@ -1,33 +1,27 @@
-'use client'
-import { removeOrderList } from "@/services/localStoreApi";
-import { useRouter } from 'next/navigation'
-import usePayments from "@/Hooks/usePayments";
-import { usePaymentContext } from "@/context/PaymentContext";
-import { uid } from "@/Constants/Constant";
-import getQueryClient from "@/app/getQueryClient";
+"use client";
 import Link from "next/link";
+import useCart from "@/Hooks/useCart";
 
 export default function SuccessButton() {
-  const queryClient = getQueryClient();
-  const {addOrUpdatePayment} = usePayments();
+  const { cartQuery: { data: cart }, removeItem } = useCart();
+  const filter = cart && cart.filter((item) => item.checked);
 
-  const router = useRouter()
-  /*function handleClick() {
-    addOrUpdatePayment.mutate( paymentContext?.updateOrderPerson, {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['payment',uid]);
-      }
+  function handleClick() {
+    filter?.map(item =>{
+      removeItem.mutate(item.id)
     })
-    router.push('/')
-  }*/
+  }
+
   return (
-    <>
-      <Link href={'/'}>
-      <button
-        // onClick={handleClick}
-      >결재 확인
-      </button>
+    <div  className={'flex justify-center items-center my-[30px]'} >
+      <Link href={"/"}>
+        <button
+          onClick={handleClick}
+          className={'w-[444px] py-[13px] px-[36px] bg-black text-white text-[20px]'}
+          >
+          결재 확인
+          </button>
       </Link>
-    </>
+    </div>
   );
 }
