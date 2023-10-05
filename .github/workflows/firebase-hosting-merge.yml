@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-"on":
+on:
   push:
     branches:
       - main
@@ -10,7 +10,8 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Decode Firebase Admin SDK Key
         run: |
           echo "${{ secrets.COLUMBIA_ADMIN_SECRET_KEY }}" | base64 --decode > firebase-adminsdk-key.json
@@ -38,9 +39,12 @@ jobs:
           NEXT_PUBLIC_TOSS_CLIENT_KEY: ${{ secrets.NEXT_PUBLIC_TOSS_CLIENT_KEY }}
           NEXT_PUBLIC_TOSS_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_TOSS_SECRET_KEY }}
           NEXT_PUBLIC_TOSS_CUSTOMER_KEY: ${{ secrets.NEXT_PUBLIC_TOSS_CUSTOMER_KEY }}
-      - name: Build and Deploy
-        run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COLUMBIATOOLS_2428D }}"
