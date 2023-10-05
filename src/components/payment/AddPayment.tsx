@@ -24,6 +24,8 @@ export default function AddPayment({ orderId, paymentType, paymentKey }: Props) 
     return cart?.filter(item => item.id === data);
   })
 
+  console.log(filters);
+
   useEffect(() => {
     function fetchOrderList() {
       getOrderList(orderId).then((res) => {
@@ -43,7 +45,7 @@ export default function AddPayment({ orderId, paymentType, paymentKey }: Props) 
               key={index}>
               <div className={"w-[60%] flex justify-start items-center"}>
                 <img
-                  className={"p-[29px]"}
+                  className={"w-[110px] py-[55px] "}
                   src={item && item[0]?.image} alt={item && item[0]?.title} />
                 <div className={"ml-[60px]"}>
                   <p className={"text-[16px] font-normal  "}>{item && item[0]?.title}</p>
@@ -65,55 +67,55 @@ export default function AddPayment({ orderId, paymentType, paymentKey }: Props) 
         ))
       }
 
-     {/* <div>
-        <div className={"mt-[30px] flex justify-start items-start gap-[122px]"}>
-          <div>
-            <p className={"text-[20px] font-bold"}>배송지 정보</p>
-          </div>
-          <div className={"flex flex-col justify-center items-start"}>
-            <div className={"flex justify-start items-center mb-[10px]"}>
-              <p className={"text-[16px] text-darkgray mr-[30px]"}>주문자명: {payment?.orderAddress.deliveryName}</p>
-              <p className={"text-[16px] text-darkgray"}>주문자 연락처: {item.orderAddress.phone}</p>
-            </div>
-            <div className={"flex justify-start items-center mb-[10px]"}>
-              <p className={"text-[16px] text-darkgray mr-[30px]"}>우편번호: [{item.zipCode}]</p>
-              <p className={"text-[16px] text-darkgray"}>배송 요청
-                주소: {item.address} {item.orderAddress.detailAddress}</p>
-            </div>
-          </div>
-        </div>
-        <div className={"border border-b-2 border-black mt-[150px]"} />
-        <div className={"flex justify-between items-start mt-[30px]"}>
-          <div className={" flex justify-start items-start gap-[122px]"}>
-            <div>
-              <p className={"text-[20px] font-bold"}>주문 결재 정보</p>
-            </div>
-            <div className={"flex flex-col justify-center items-start"}>
-              <div className={"flex justify-start items-center mb-[10px]"}>
-                <p className={"text-[16px] text-darkgray mr-[30px]"}>{paymentType}</p>
-              </div>
-              <div className={"flex justify-start items-center mb-[10px]"}>
-                <p className={"text-[16px] text-darkgray mr-[30px]"}>{orderList?.requestedAt}</p>
-              </div>
-            </div>
-          </div>
-          <div className={"w-[30%] flex flex-col justify-center items-between"}>
-            <div className={"flex justify-between"}>
-              <p className={"text-[20px] font-bold"}>상품 총 금액</p>
-              <p className={"text-[16px] text-darkgray"}>{item.totalPrice.toLocaleString("kr-KR")} 원</p>
-            </div>
-            <div className={"flex mt-[9px] justify-between"}>
-              <p className={"text-[20px] text-darkgray font-bold"}>배송비</p>
-              <p className={"text-[16px] text-darkgray"}><span
-                className={"text-[16px] text-darkgray"}>{DELIVERYMONEY} 원</span></p>
-            </div>
-            <div className={"flex justify-between items-center mt-[42px]"}>
-              <p className={"text-[20px] font-bold"}>총 결재 금액</p>
-              <p className={"text-[24px] text-gold font-semibold"}>{item.totalPrice.toLocaleString("kr-KR")} 원</p>
-            </div>
-          </div>
-        </div>
-      </div>*/}
+      {/*<div>*/}
+      {/*  <div className={"mt-[30px] flex justify-start items-start gap-[122px]"}>*/}
+      {/*    <div>*/}
+      {/*      <p className={"text-[20px] font-bold"}>배송지 정보</p>*/}
+      {/*    </div>*/}
+      {/*    <div className={"flex flex-col justify-center items-start"}>*/}
+      {/*      <div className={"flex justify-start items-center mb-[10px]"}>*/}
+      {/*        <p className={"text-[16px] text-darkgray mr-[30px]"}>주문자명: {payment?.orderAddress.deliveryName}</p>*/}
+      {/*        <p className={"text-[16px] text-darkgray"}>주문자 연락처: {item.orderAddress.phone}</p>*/}
+      {/*      </div>*/}
+      {/*      <div className={"flex justify-start items-center mb-[10px]"}>*/}
+      {/*        <p className={"text-[16px] text-darkgray mr-[30px]"}>우편번호: [{item.zipCode}]</p>*/}
+      {/*        <p className={"text-[16px] text-darkgray"}>배송 요청*/}
+      {/*          주소: {item.address} {item.orderAddress.detailAddress}</p>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*  <div className={"border border-b-2 border-black mt-[150px]"} />*/}
+      {/*  <div className={"flex justify-between items-start mt-[30px]"}>*/}
+      {/*    <div className={" flex justify-start items-start gap-[122px]"}>*/}
+      {/*      <div>*/}
+      {/*        <p className={"text-[20px] font-bold"}>주문 결재 정보</p>*/}
+      {/*      </div>*/}
+      {/*      <div className={"flex flex-col justify-center items-start"}>*/}
+      {/*        <div className={"flex justify-start items-center mb-[10px]"}>*/}
+      {/*          <p className={"text-[16px] text-darkgray mr-[30px]"}>{paymentType}</p>*/}
+      {/*        </div>*/}
+      {/*        <div className={"flex justify-start items-center mb-[10px]"}>*/}
+      {/*          <p className={"text-[16px] text-darkgray mr-[30px]"}>{orderList?.requestedAt}</p>*/}
+      {/*        </div>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*    <div className={"w-[30%] flex flex-col justify-center items-between"}>*/}
+      {/*      <div className={"flex justify-between"}>*/}
+      {/*        <p className={"text-[20px] font-bold"}>상품 총 금액</p>*/}
+      {/*        <p className={"text-[16px] text-darkgray"}>{item.totalPrice.toLocaleString("kr-KR")} 원</p>*/}
+      {/*      </div>*/}
+      {/*      <div className={"flex mt-[9px] justify-between"}>*/}
+      {/*        <p className={"text-[20px] text-darkgray font-bold"}>배송비</p>*/}
+      {/*        <p className={"text-[16px] text-darkgray"}><span*/}
+      {/*          className={"text-[16px] text-darkgray"}>{DELIVERYMONEY} 원</span></p>*/}
+      {/*      </div>*/}
+      {/*      <div className={"flex justify-between items-center mt-[42px]"}>*/}
+      {/*        <p className={"text-[20px] font-bold"}>총 결재 금액</p>*/}
+      {/*        <p className={"text-[24px] text-gold font-semibold"}>{item.totalPrice.toLocaleString("kr-KR")} 원</p>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </div>
   );
 }

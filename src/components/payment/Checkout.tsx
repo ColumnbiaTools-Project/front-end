@@ -51,7 +51,6 @@ export default function CheckOut({ orderPerson, orderAddress }: Props) {
     productId: productId || [] // 기본값 설정
   }), [orderPerson, orderAddress, address, zipCode, totalPrice, orderId, productId]);
 
-  console.log(updateOrderPerson);
 
   useEffect(() => {
     if (totalPrice) {

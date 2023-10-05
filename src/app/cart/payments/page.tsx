@@ -1,11 +1,13 @@
 'use client'
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEventHandler } from "react";
 import PayList from "@/components/payment/PayList";
 import OrderList from "@/components/payment/OrderList";
 import CheckOut from "@/components/payment/Checkout";
 import useCart from "@/Hooks/useCart";
 import OrderAddress from "@/components/payment/OrderAddress";
 import { usePaymentContext } from "@/context/PaymentContext";
+
+// Import statements here...
 
 export default function Page() {
   const [email, setEmail] = useState("");
@@ -30,29 +32,31 @@ export default function Page() {
   useEffect(() => {
     if (filter && filter.length > 0) {
       const count = filter.length - 1;
-      setOrderPerson(prevOrderPerson => ({
+      const productName = count > 0 ? `${filter[0].title} 외 ${count}건` : filter[0].title;
+
+      setOrderPerson((prevOrderPerson) => ({
         ...prevOrderPerson,
-        productName: count > 0 ? `${filter[0].title} 외 ${count}건` : filter[0].title
+        productName
       }));
 
-      const productIds = filter.map(item => item.id).filter(Boolean);
+      const productIds = filter.map((item) => item.id).filter(Boolean);
       orderContext?.setProductId(productIds);
     }
   }, []);
 
   useEffect(() => {
     const Email = `${email}@${selectEmail}`;
-    setOrderPerson(prevOrderPerson => ({ ...prevOrderPerson, orderEmail: Email }));
+    setOrderPerson((prevOrderPerson) => ({ ...prevOrderPerson, orderEmail: Email }));
   }, [email, selectEmail]);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
-    setOrderPerson(prevOrderPerson => ({ ...prevOrderPerson, [name]: value }));
+    setOrderPerson((prevOrderPerson) => ({ ...prevOrderPerson, [name]: value }));
   }
 
-  function handleAddressChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleAddressChange(e:React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
-    setOrderAddress(prevOrderAddress => ({ ...prevOrderAddress, [name]: value }));
+    setOrderAddress((prevOrderAddress) => ({ ...prevOrderAddress, [name]: value }));
   }
 
   return (
@@ -64,7 +68,12 @@ export default function Page() {
       <div>
         <PayList filter={filter} />
         <div className="border border-black mt-[100px]" />
-        <OrderList handleChange={handleChange} setEmail={setEmail} setSelectEmail={setSelectEmail} selectEmail={selectEmail} />
+        <OrderList
+          handleChange={handleChange}
+          setEmail={setEmail}
+          setSelectEmail={setSelectEmail}
+          selectEmail={selectEmail}
+        />
         <div className="border border-1 border-black mt-[100px]" />
         <OrderAddress handleChange={handleAddressChange} />
       </div>
