@@ -24,7 +24,7 @@ export default function AddPayment({ orderId, paymentType, paymentKey }: Props) 
     return cart?.filter(item => item.id === data);
   })
 
-  console.log(filters);
+
 
   useEffect(() => {
     function fetchOrderList() {
