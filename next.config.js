@@ -16,6 +16,7 @@ const nextConfig = {
     serverComponentsExternalPackages: ["firebase-admin"],
     middleware: true,
   },
+  output: "export",
 };
 
 module.exports = nextConfig;
