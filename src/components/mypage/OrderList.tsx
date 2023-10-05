@@ -2,7 +2,7 @@
 
 import OrderItem from "./OrderItem";
 import { usePeriodContext } from "@/context/PeriodContext";
-import { useOrders } from "@/hooks/useOrders";
+import { useOrders } from "@/Hooks/useOrders";
 import { useState } from "react";
 import Paginate from "./Paginate";
 
