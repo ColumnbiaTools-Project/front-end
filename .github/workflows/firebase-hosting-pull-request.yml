@@ -45,5 +45,6 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COLUMBIATOOLS_2428D }}"
           projectId: columbiatools-2428d
+          channelId: "github-actions-${{github.event.commits.id}}"
         env:
           FIREBASE_CLI_PREVIEWS: webframeworks
