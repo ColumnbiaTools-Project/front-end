@@ -1,6 +1,6 @@
 "use client";
 import { FiLogOut } from "react-icons/fi";
-import useLogOut from "@/hooks/useLogOut";
+import useLogOut from "@/Hooks/useLogOut";
 
 export default function LogoutBtn() {
   const { handleLogout } = useLogOut();
