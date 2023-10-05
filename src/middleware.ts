@@ -14,25 +14,19 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   if (!session) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
-  if (session) {
-    const baseURL =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : "https://example.com";
 
-    const responseAPI = await fetch(`${baseURL}/api/login`, {
-      headers: {
-        Cookie: `session=${session?.value}`,
-      },
+  const responseAPI = await fetch("/api/login", {
+    headers: {
+      Cookie: `session=${session?.value}`,
+    },
+  });
+
+  //Return to /login if token is not authorized
+  if (responseAPI.status !== 200) {
+    await fetch("/api/signOut", {
+      method: "POST",
     });
-
-    //Return to /login if token is not authorized
-    if (responseAPI.status !== 200) {
-      await fetch(`${baseURL}/api/signOut`, {
-        method: "POST",
-      });
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return NextResponse.next();
