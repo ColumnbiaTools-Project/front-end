@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FiUser } from "react-icons/fi";
-import { PiShoppingCartSimpleBold } from "react-icons/pi";
+
 import LogoutBtn from "./LogoutBtn";
 import LoginOrMypage from "./LoginOrMypage";
+import CartLink from "./CartLink";
 
 export default function Header() {
   return (
@@ -31,9 +32,7 @@ export default function Header() {
       <div className="flex">
         <LogoutBtn />
         <LoginOrMypage />
-        <Link href="/cart" className="mx-3">
-          <PiShoppingCartSimpleBold className="w-8 h-8 text-white" />
-        </Link>
+        <CartLink />
       </div>
     </div>
   );
