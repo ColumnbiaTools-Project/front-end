@@ -27,7 +27,7 @@ export default function LoginContainer() {
     const baseURL =
       process.env.NODE_ENV === "development"
         ? "http://localhost:3000"
-        : "https://colbia-dep.vercel.app/";
+        : "https://colbia-dep.vercel.app";
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       // After successful login, send a POST request to the server to create a session cookie
@@ -40,7 +40,7 @@ export default function LoginContainer() {
       }).then(response => {
         if (response.status === 200) {
           console.log("로그인 성공");
-          router.push("/");
+          router.replace("/");
         }
       });
     } catch (error: unknown) {

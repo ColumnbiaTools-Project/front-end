@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   const baseURL =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://colbia-dep.vercel.app/";
+      : "https://colbia-dep.vercel.app";
 
   // If the path is /login and a session exists, redirect to home
   if (session) {
