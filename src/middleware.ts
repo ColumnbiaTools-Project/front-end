@@ -25,6 +25,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   const responseAPI = await fetch(`${baseURL}/api/login`, {
     headers: {
       Cookie: `session=${session?.value}`,
+      cache: "no-store",
     },
   });
 
