@@ -6,7 +6,7 @@ export default function useLogOut() {
   const baseURL =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://colbia-dep.vercel.app/";
+      : "https://colbia-dep.vercel.app";
   const handleLogout = async () => {
     try {
       await auth.signOut();
@@ -17,6 +17,7 @@ export default function useLogOut() {
 
       if (response.status === 200) {
         console.log("로그아웃 성공:", auth.currentUser);
+        router.refresh();
       }
     } catch (error) {
       console.log("로그아웃 실패:", error);
