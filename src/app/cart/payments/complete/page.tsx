@@ -1,22 +1,52 @@
 "use client";
-import axios from "axios";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import AddPayment from "@/components/payment/AddPayment";
 import SuccessButton from "@/components/payment/SuccessButton";
 import dayjs from "dayjs";
+import { useEffect } from "react";
+import axios from "axios";
+import useCart from "@/Hooks/useCart";
 
-interface Payment {
-  paymentType: string;
-  orderId: string;
-  paymentKey: string;
-  amount: number;
-}
-
-export default function SuccessPage(payment: any) {
+export default function SuccessPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId");
   const paymentKey = searchParams.get("paymentKey");
+  const amount = searchParams.get("amount");
   const paymentType = searchParams.get("paymentType");
+  const { cartQuery, removeItem } = useCart();
+  const checkedCartItem =
+    cartQuery?.data && cartQuery?.data.filter(item => item.checked);
+
+  async function fetchTossConfirm() {
+    try {
+      const res = await axios.post("/api/toss", {
+        paymentKey,
+        amount,
+        orderId,
+      });
+      if (res && res.status === 200) {
+        const data = res.data;
+        checkedCartItem &&
+          checkedCartItem.forEach(item => {
+            removeItem.mutate(item.id);
+          });
+        console.log("결제 승인 성공!", data);
+      } else {
+        console.error("토스 결제승인에 오류가 났습니다!", res);
+        alert("결제 승인에 오류가 났습니다.");
+        router.push("/cart");
+      }
+    } catch (error) {
+      console.error("토스 결제 승인 오류", error);
+      alert("결제 승인에 오류가 났습니다.");
+      router.push("/cart");
+    }
+  }
+
+  useEffect(() => {
+    fetchTossConfirm();
+  }, []);
 
   return (
     <>
@@ -46,39 +76,3 @@ export default function SuccessPage(payment: any) {
     </>
   );
 }
-
-SuccessPage.getInitialProps = async (context: any) => {
-  const {
-    query: { paymentKey, orderId, amount },
-  } = context;
-
-  try {
-    const { data: payment } = await axios.post<Payment>(
-      "https://api.tosspayments.com/v1/payments/confirm",
-      {
-        paymentKey,
-        orderId,
-        amount,
-      },
-      {
-        headers: {
-          Authorization: `Basic ${Buffer.from(
-            `${process.env.TOSS_PAYMENTS_SECRET_KEY}:`,
-          ).toString("base64")}`,
-        },
-      },
-    );
-
-    return {
-      payment,
-    };
-  } catch (err: any) {
-    console.error("err", err);
-    return {
-      redirect: {
-        destination: `/fail?code=${err.code}&message=${err.message}`,
-        permanent: false,
-      },
-    };
-  }
-};

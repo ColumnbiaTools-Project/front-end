@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest, response: NextResponse) {
   const session = request.cookies.get("session");
-  console.log("session:", session);
 
   const baseURL =
     process.env.NODE_ENV === "development"
